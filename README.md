@@ -164,7 +164,7 @@ int main()
     };
 ````
 ---
-#### Data Members, Member Functions and Access Modifiers
+#### <ins>Data Members, Member Functions and Access Modifiers</ins>
 ###### Accessing the Data Members of Class
 - The public data members of objects of a class can be accessed using the direct member access operator(.)
 - Syntax: object.class_member;
