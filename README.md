@@ -326,8 +326,8 @@ int main()
     student Abdullah;
     Abdullah.setter(42, "Hi");
     Abdullah.getter();
-	set_code(Abdullah, "1234");
-	Abdullah.getter();
-	return (0);
+    set_code(Abdullah, "1234");
+    Abdullah.getter();
+    return (0);
 }
 ```
