@@ -35,7 +35,7 @@ There are six fundamental concepts of OOPs
 - '<<' is known as insertion operator.
 - '>>' is known as extraction operator.
 ###### Examples
-```
+```json
 // program to print hello world
 #include <iostream>
 int main()
@@ -45,7 +45,7 @@ return (0);
 }
 
 ```
-```
+```json
 // program to take two numbers and display them
 #include <iostream>
 using namespace std;
