@@ -28,3 +28,32 @@ There are six fundamental concepts of OOPs
     * Overriding
 - Overloading example: a same function can have multiple forms which act and react differently according to situation.
 - Overriding example: a child class can implement function from parent class according to its need.
+---
+###### iostreamm header
+- The standard input and output is performed using header iostream.
+- It is a standard library which consists four standard input output objects i.e 'cin', 'cout', 'cerr', 'clog'.
+- '<<' is known as insertion operator.
+- '>>' is known as extraction operator.
+###### Examples
+```
+// program to print hello world
+#include <iostream>
+int main()
+{
+std::cout << "hello world";
+return (0);
+}
+
+// program to take two numbers and display them
+#include <iostream>
+using namespace std;
+int main()
+{
+int firstNum, secondNum;
+cout << "Enter two numbers:" << endl;
+cin >> firstNum >> secondNum;
+cout << "First number: " << firstNum << endl;
+cout << "Second number: " << secondNum << endl;
+return (0);
+}
+```
