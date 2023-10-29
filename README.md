@@ -35,7 +35,7 @@ There are six fundamental concepts of OOPs
 - '<<' is known as insertion operator.
 - '>>' is known as extraction operator.
 ###### Examples
-```json
+```ruby
 // program to print hello world
 #include <iostream>
 int main()
