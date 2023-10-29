@@ -29,7 +29,11 @@ There are six fundamental concepts of OOPs
 - Overloading example: a same function can have multiple forms which act and react differently according to situation.
 - Overriding example: a child class can implement function from parent class according to its need.
 ---
+<<<<<<< Updated upstream
 #### iostreamm header
+=======
+###### <ins>iostreamm header</ins>
+>>>>>>> Stashed changes
 - The standard input and output is performed using header iostream.
 - It is a standard library which consists four standard input output objects i.e 'cin', 'cout', 'cerr', 'clog'.
 - '<<' is known as insertion operator.
@@ -85,5 +89,39 @@ int main(void)
 {
    func(5); // the output will be : 5 42
    return (0);
+}
+```
+#### <ins>Function Overloading in C++</ins>
+- Function overloading is a feature of object-oriented programming where two or more funtions can have the same name but different parameters.
+- When a function name is overloaded with different jobs it is called Function Overloading.
+- In Function Overloading **Function** name should be the same and the arguments should be different.
+- Function Overloading can be considered as an example of a polymorphism feature in C++.
+###### Example
+```cpp
+add(int a, int b)
+add(int a, int b, int c)
+```
+Here, the function add() is overloaded function, one with 2 arguments and another with 3 arguments. So, when  the add() function is called with 2 arguments, the function add(int a, int b) is executed and when the add() function is called with 3 arguments, the function add(int a, int b, int c) is executed.
+```cpp
+#include <iostream>
+using namespace std;
+
+int sum(int, int);
+int sum(int, int, int);
+
+int sum(int a, int b)
+{
+   return a + b;
+}
+int sum(int a, int b, int c)
+{
+    return a + b + c;
+}
+
+int main()
+{
+    cout << "Passing 1 and 2 arguments: " << sum(1, 2) << endl;
+    cout << "Passing 1, 2 and 3 arguments: " << sum(1, 2, 3) << endl;
+    return (0);
 }
 ```
