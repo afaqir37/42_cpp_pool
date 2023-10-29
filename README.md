@@ -44,6 +44,8 @@ std::cout << "hello world";
 return (0);
 }
 
+```
+```
 // program to take two numbers and display them
 #include <iostream>
 using namespace std;
