@@ -133,7 +133,7 @@ int main()
 - This doesn't actually define any data, but it does define what the class name means, that is, what an object of the class will consist of and what operations can be performed on such an object.
 - A class definition starts with the keyword **class** followed by the **class name** and **class body**, enclosed by a pair of curly braces.
 
-*** <ins>Syntax</ins> ***
+<ins>Syntax</ins> 
 ```cpp
     class className
     {
@@ -145,7 +145,8 @@ int main()
 ###### Object
 - A class provides the blueprints for objects, so basically an object is created from a class.
 - We declare objects of a class with exactly the same sort of declaration that we declare variables of basic types.
-*** <ins>Syntax</ins> ***
+
+<ins>Syntax</ins> 
 ```
  class_name object_name;
 ```
@@ -153,7 +154,7 @@ int main()
 - Data members are the variables inside the class.
 - Data members can be any data type like int, float, char, double etc.
 
-*** <ins>Syntax</ins> ***
+<ins>Syntax</ins>
 ````cpp
     class Demo
     {
@@ -163,3 +164,12 @@ int main()
     };
 ````
 ---
+#### Data Members, Member Functions and Access Modifiers
+###### Accessing the Data Members of Class
+- The public data members of objects of a class can be accessed using the direct member access operator(.)
+- Syntax: object.class_member;
+
+###### Member Function of CLass
+- A member function of a class is a function that has its definition or its prototype within the class definition like any other variable.
+- Member functions can be defined within the class definition or separately using scope resolution operator, (::).
+- Defining a member function within the class definition declares the function inline, even if we do not use the inline specifier.
