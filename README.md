@@ -29,12 +29,12 @@ There are six fundamental concepts of OOPs
 - Overloading example: a same function can have multiple forms which act and react differently according to situation.
 - Overriding example: a child class can implement function from parent class according to its need.
 ---
-###### iostreamm header
+#### iostreamm header
 - The standard input and output is performed using header iostream.
 - It is a standard library which consists four standard input output objects i.e 'cin', 'cout', 'cerr', 'clog'.
 - '<<' is known as insertion operator.
 - '>>' is known as extraction operator.
-###### Examples
+#### Examples
 ```cpp
 // program to print hello world
 #include <iostream>
@@ -57,5 +57,33 @@ cin >> firstNum >> secondNum;
 cout << "First number: " << firstNum << endl;
 cout << "Second number: " << secondNum << endl;
 return (0);
+}
+```
+---
+#### 👓 Inline functions, default and constant arguments in C++
+###### Inline functions
+- An inline function is a function that is expanded in line when it is called.
+- When a function is declared as 'inline', the compiler may choose to replace function calls with the actual function code at compile time. This is known as "inlining" the function. Inlining reducs the overhead of function call, which includes pushing and popping parameters onto and from the stack, and jumping to the function code.
+###### Syntax
+```cpp
+inline return_type   function_name(parameters)
+{
+   // function code
+}
+```
+###### Default arguments
+- A default argument is a value provided in a function declaration that is automatically assigned by the compiler if the calling function doesn't provide a value for the argument.
+- In case any value is passed, the default value is overridden.
+***Example***
+```cpp
+#include <iostream>
+void func(int a, int b = 42)
+{
+   std::cout << a << " " << b << endl;
+}
+int main(void)
+{
+   func(5); // the output will be : 5 42
+   return (0);
 }
 ```
