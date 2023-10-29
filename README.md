@@ -60,7 +60,7 @@ return (0);
 }
 ```
 ---
-#### 👓 Inline functions, default and constant arguments in C++
+#### 👓 Inline functions and default arguments in C++
 ###### Inline functions
 - An inline function is a function that is expanded in line when it is called.
 - When a function is declared as 'inline', the compiler may choose to replace function calls with the actual function code at compile time. This is known as "inlining" the function. Inlining reducs the overhead of function call, which includes pushing and popping parameters onto and from the stack, and jumping to the function code.
