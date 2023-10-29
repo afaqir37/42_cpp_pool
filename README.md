@@ -91,6 +91,7 @@ int main(void)
    return (0);
 }
 ```
+---
 #### <ins>Function Overloading in C++</ins>
 - Function overloading is a feature of object-oriented programming where two or more funtions can have the same name but different parameters.
 - When a function name is overloaded with different jobs it is called Function Overloading.
@@ -125,3 +126,37 @@ int main()
     return (0);
 }
 ```
+---
+#### <ins>Class definition and Object definition in C++</ins>
+###### Class
+- When we define a class, we define a blueprint for a data type.
+- This doesn't actually define any data, but it does define what the class name means, that is, what an object of the class will consist of and what operations can be performed on such an object.
+- A class definition starts with the keyword **class** followed by the **class name** and **class body**, enclosed by a pair of curly braces.
+
+***<ins>Syntax</ins>***
+```cpp
+    class className
+    {
+        Access specifier;
+        Data members;
+        Member Functions(){}
+    };
+```
+###### Object
+- A class provides the blueprints for objects, so basically an object is created from a class.
+- We declare objects of a class with exactly the same sort of declaration that we declare variables of basic types.
+***<ins>Syntax</ins>***
+> class_name object_name;
+###### Data Member of Class
+- Data members are the variables inside the class.
+- Data members can be any data type like int, float, char, double etc.
+***<ins>Syntax</ins>***
+````cpp
+    class Demo
+    {
+        int     member1;
+        float   member2;
+        char    member3;
+    };
+````
+---
