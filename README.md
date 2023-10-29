@@ -29,11 +29,7 @@ There are six fundamental concepts of OOPs
 - Overloading example: a same function can have multiple forms which act and react differently according to situation.
 - Overriding example: a child class can implement function from parent class according to its need.
 ---
-<<<<<<< Updated upstream
 #### iostreamm header
-=======
-###### <ins>iostreamm header</ins>
->>>>>>> Stashed changes
 - The standard input and output is performed using header iostream.
 - It is a standard library which consists four standard input output objects i.e 'cin', 'cout', 'cerr', 'clog'.
 - '<<' is known as insertion operator.
@@ -169,7 +165,169 @@ int main()
 - The public data members of objects of a class can be accessed using the direct member access operator(.)
 - Syntax: object.class_member;
 
-###### Member Function of CLass
+###### <ins>Member Function of CLass</ins>
 - A member function of a class is a function that has its definition or its prototype within the class definition like any other variable.
 - Member functions can be defined within the class definition or separately using scope resolution operator, (::).
 - Defining a member function within the class definition declares the function inline, even if we do not use the inline specifier.
+
+###### <ins>Class Access Modifiers</ins>
+- Class Access modifiers are keywords that can be used to control the visibility of fields, methods, and constructors in a class.
+- The keywords public, private, and protected are called access specifiers
+
+###### <ins>The Public Members</ins>
+- A public member is accessible from anywhere outside the class but within a program.
+
+###### <ins>The Private Members</ins>
+- A private member variable or function cannot be accessed, or even viewed from outside the class. Only the class and friend functions can access private members. By default all the members of a class would be private.
+
+###### <ins>The Protected Members</ins>
+- A protected member variable or function is very similar to a private member they can be accessed in child classes which are called derived classes.
+
+```cpp
+// Program to access data members of class
+#include <iostream>
+using namespace std;
+
+class Student {
+    public:             // access specifier
+        string name;    // data member
+        string sex;     // data member
+        int    id;      // data member
+};
+
+int main()
+{
+    Student afaqir;     // afaqir object of class Student
+    // accessing data members of class student
+    afaqir.id = 1;
+    afaqir.name = "Faqir Abdellah";
+    afaqir.sex = "Male";
+    cout << "Student's details:" << endl;
+    cout << "ID: " << afaqir.id << endl;
+    cout << "Name: " << afaqir.name << endl;
+    cout << "Sex: " << afaqir.sex << endl;
+    return 0;
+}
+```
+
+```cpp
+// Program to demonstrate access modifiers
+#include <iostream>
+using namespace std;
+
+class Student {
+    private: // cannot be accessed
+        string phone;
+    
+    public: // can be accessed
+        int id;
+        string name;
+        string faculty;
+
+    protected: // cannot be accessed
+        string guardian_phone;
+};
+
+int main()
+{
+    Student abdellah;
+    abdellah.phone = "XXX-XXX-XXX"; // not allowed
+    abdellah.id = 42;
+    abdellah.name = "faqir";
+    abdellah.faculty = "CS";
+    abdellah.guardian_phone = "YYY-YYY-YYY"; // not allowed
+    return 0;
+}
+```
+```cpp
+// Program to create member function
+#include <iostream>
+using namespace std;
+
+class Student {
+    public:
+        int     id;
+        string  name;
+        // member function
+        void display()
+        {
+            cout << "Member function running";
+        }
+};
+
+int main()
+{
+    Student Abdullah;
+    Abdullah.display();
+    return 0;
+}
+```
+```cpp
+// Program to define member function outside of the class
+#include <iostream>
+using namespace std;
+
+class Student {
+    public:
+        int     id;
+        string  name;
+        void    display();
+};
+
+// member function definition outside of class
+void Student::display()
+{
+    cout << "member function outside class" << endl;
+}
+
+int main()
+{
+    Student Abdullah;
+    Abdullah.display();
+    return 0;
+}
+```
+```cpp
+// Program to define a friend function to access a private member inside a class
+#include <iostream>
+using namespace std;
+
+class student {
+    private:
+        string secret_code;
+
+    public:
+        int     id;
+        string  say_hello;
+
+        void setter(int number, string str)
+        {
+            id = number;
+            say_hello = str;
+        }
+        void getter()
+        {
+            cout << "Id: " << id << endl;
+            cout << "Say Hello: " << say_hello << endl;
+            cout << "Secret Code: " << secret_code << endl;
+        }
+        friend void set_code(student &obj, string code);
+        // this function can now access the private members of this class
+
+};
+
+void set_code(student &obj, string code)
+{
+    obj.secret_code = code;
+}
+
+int main()
+{
+    student Abdullah;
+    Abdullah.setter(42, "Hi");
+    Abdullah.getter();
+	set_code(Abdullah, "1234");
+	Abdullah.getter();
+	return (0);
+}
+```

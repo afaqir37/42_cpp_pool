@@ -29,17 +29,18 @@ void newClass::display(void)
 class subClass : public newClass {
     int a;
     string name;
-public:
-    void setter(int num1, string str)
-    {
-        a = num1;
-        name = str;
-    }
-    void display_child(void)
-    {
-        display();
-        cout << "value of a: " << a << endl << "value of name: " << name << endl;
-    }
+    
+    public:
+        void setter(int num1, string name)
+        {
+            a = num1;
+            this->name = name;
+        }
+        void display_child(void)
+        {
+            display();
+            cout << "value of a: " << a << endl << "value of name: " << name << endl;
+        }
 };
 
 class newSubClass : private subClass
