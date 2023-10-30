@@ -594,6 +594,121 @@ int main()
     c3.showData();
 }
 ```
+---
+#### <ins>Types of Class Constructors</ins>
+###### <ins>Default Constructor</ins>
+- The constructor which does not take any arguments is called default constructor.
+- It is also called non-parameterized constructor.
+- The compiler automatically creates a default constructor without data member or initialization if no constructor is explicitly declared.
+**Example**
+```cpp
+//Program to demonstrate default constructor
+#include <iostream>
+using namespace std;
+
+class complex {
+    int real, imag;
+
+    public:
+        complex() // default constructor
+        {
+            real = 1;
+            imag = 5;
+        }
+
+        void showNumber()
+        {
+            cout << "Complex number is " << real << "+" << imag << "i" << endl;
+        }
+};
+
+int main()
+{
+    complex c;
+    c.showNumber();
+    return 0;
+}
+```
+#### <ins>Parameterized Constructor</ins>
+- it takes argument while caling the constructor.
+- Typically these arguments are used to initialize an object when it is created.
+
+**Example**
+```cpp
+// Program to demonstrate parameterized constructor
+#include <iostream>
+using namespace std;
+
+class complex {
+    int real, imag;
+    public:
+        complex(int a, int b) // parameterized constructor
+        {
+            real = a;
+            imag = b;
+        }
+        void showNumber()
+        {
+            cout << "Complex number is " << real << "+" << imag << "i" << endl;
+        }
+};
+
+int main()
+{
+    // implicit invoke
+    complex c1(20, 40);
+    c1.showNumber();
+
+    //explicit invoke
+    complex c2 = complex(3, 5);
+    c2.showNumber();
+}
+```
+###### <ins>Copy Constructor</ins>
+
+- The copy constructor is a constructor which creates an object by initializing it with an object of the same class, which has been created previously.
+- The copy constructor is used to
+    * Initialize one object from another of the same type.
+    * Copy an object to pass it as an argument ot a function.
+    * Copy an object to return it from a function.
+
+**Example**
+```cpp
+// Program to demonstrate copy constructor
+#include <iostream>
+using namespace std;
+
+class complex {
+    int real, imag;
+
+    public:
+        complex(int a, int b)
+        {
+            real = a;
+            imag = b;
+        }
+
+        complex(complex &obj) // copy constructor
+        {
+            real = obj.real;
+            imag = obj.imag;
+        }
+
+        void showNumber()
+        {
+            cout << "Complex number is " << real << "+" << imag << "i" << endl;
+        }
+};
+
+int main()
+{
+    complex c1(11, 22);
+    c1.showNumber();
+
+    complex c2(c1);
+    c2.showNumber();
+}
+```
 
 
 
