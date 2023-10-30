@@ -361,3 +361,51 @@ int main()
     return 0;
 }
 ```
+---
+#### <ins>Destructors in C++</ins>
+- A Destructor is a special member function of a class which is executed whenever an object of that class goes out of scope.
+- A Destructor is created using tilde(~) sign.
+- Destructor is created automatically by the compiler and invoked automatically when an object of the class goes out of scope.
+- Destructor is used in order to free up the memory or release the memory used by the class objects.
+
+**Syntax**
+```cpp
+~classname()
+{
+    //statement
+}
+```
+**Program**
+```cpp
+// Program to demonstrate the destructor
+#include <iostream>
+using namespace std;
+
+class Dimensions {
+    int length, width;
+    public:
+        Dimensions(int a, int b)
+        {
+            length = a;
+            width = b;
+        }
+
+        void showData()
+        {
+            cout << "First dimension: " << length << endl << "Second dimension: " << width << endl; 
+        }
+
+        ~Dimensions()
+        {
+            cout << "Destructor is called..." << endl;
+        }
+};
+
+int main()
+{
+    Dimensions object(10, 20);
+    object.showData();
+    return 0;
+}
+
+```
