@@ -331,3 +331,33 @@ int main()
     return (0);
 }
 ```
+#### <ins>The Class Constructors</ins>
+###### <ins>Class Constructors</ins>
+- Class constructors are the special member function whose name is same as that of the class.
+- Constructors are used to initialize the member of the objects.
+- Constructors does not have any return type at all, not even void.
+- Constructors are automatically invoked whenever an object is created.
+
+**Example**
+```cpp
+#include <iostream>
+using namespace std;
+
+class student
+{
+    public:
+        int number;
+        // constructor
+        student(int data = 42)
+        {
+            number = data;
+            cout << "I am a constructor" << endl;
+        }
+};
+
+int main()
+{
+    student demo; // gives output: "I am a constructor" and initialize the member data by default with 42
+    return 0;
+}
+```
