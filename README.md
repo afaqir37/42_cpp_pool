@@ -409,3 +409,103 @@ int main()
 }
 
 ```
+---
+#### <ins>Static Data Members and Static Member Functions</ins>
+**Static Data Members**
+- Static data members in C++ are not instantiated for each object of a class and instead, only one copy of the data member exists for the entire class.
+- A static data member in C++ is declared within a class and is defined outside the class.
+- A static data member in C++ can be accessed with the help of the scope resolution operator(::) or a static member function.
+- A constant static data member in C++ can be initialized within the same class in which it is defined.
+- A Static data member in C++ are not associated with any object and can be accessed even without the creation of any object. Static data members belong to the static **storage class** in C++ and as such have a lifetime equal to the lifetime of the program.
+***Example***
+```cpp
+// Program to show how static data member works
+#include <iostream>
+using namespace std;
+
+class test {
+    public:
+        static int x; //declaration of static data member x
+};
+
+int test::x = 42; // definition of the static data member
+
+int main()
+{
+    cout << test::x << endl; // as you see, we can access the static variable without defining an object from the class.
+                            // the output will be 42;
+}
+```
+```cpp
+// Program to demonstrate static data member
+#include <iostream>
+using namespace std;
+
+class school {
+    public:
+        static string name;
+};
+
+string school::name = "Random";
+
+int main()
+{
+    school obj1, obj2;
+    obj1.name = "EMI";
+    obj2.name = "1337";
+    cout << obj1.name << endl; // should prints "1337" since name is static data member
+    return 0;
+}
+```
+**Static Member Functions**
+- By declaring a function member as static, you make it independent of any particulr object of the class.
+- A static member function can be called even if no objects of the class exist.
+- A static functions are accessed using only the class name and the scope resolution operator :: .
+- A static member function in C++ can access only the static data members.
+**Example**
+```cpp
+// Program that throws error in compile-time
+#include <iostream>
+using namespace std;
+
+class test {
+    public:
+        int y = 0;
+        static void increment()
+        {
+            y++; // Error
+        }
+};
+
+int main()
+{
+    test obj;
+    obj.increment();
+    return 0;
+}
+```
+```cpp
+// Program that shows how static member function works
+#include <iostream>
+using namespace std;
+
+class test {
+    public:
+        static void display()
+        {
+            cout << "Hi there!" << endl; 
+        }
+};
+
+int main()
+{
+    test::display(); // you can use the static member function 'display()' without the existence of an object.
+
+    test obj;
+    obj.display(); // or you can create an instance from the test class and access the display() function.
+    return 0;
+}
+```
+
+
+
