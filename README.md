@@ -828,7 +828,7 @@ Name: Pele
 #### <ins>Operator Overloading in C++</ins>
 - ___Operator overloding is a compile-time polymorphism___. It is an idea of giving special meaning to an existing operator in C++ without changing its original meaning.
 - In C++, we can make operators work for user-defined classes. This means C++ has the ability to provide the operators with a special meaning for a data type, this ability is known as operator overloading. For example, we can overload an operator '+' in a class like String so that we can concatenate two strings by just using +. Other example classes where arithmetic operators may be overloaded are Complex Numbers, Fractional Numbers, Big integers, etc.
-##### What is the difference between operator functions and normal functions?
+##### <ins>What is the difference between operator functions and normal functions?</ins>
 Operator functions are the same as normal functions. The only differences are, that the name of an operator function is always the operator keyword followed by the symbol of the operator, and operator functions are called when the corresponding operator is used.
 
 ```cpp
@@ -880,10 +880,111 @@ int main(void)
 
 - The statement complex c3 = c1 + c2; is internally translated as complex c3 = c1.operator+ (c2); in order to invoke the operator function. The argument c1 is implicitly passed using the '.' operator. The next statement also makes use of the dot operator to access the member function 'print' and pass c3 as an argument.
 
-##### Can we overload all operators?
+##### <ins>Can we overload all operators?</ins>
 Almost all operators can be overloaded except a few. Following is the list of operators that cannot be overloaded.
 - sizeof
 - typeid
 - Scope resolution (::)
 - Class member access operator (.(dot), .* (pointer to member operator))
 - ternary or conditional (?:)
+---
+#### <ins>Function Overriding in C++</ins>
+**Function overriding is where a derived class can override the function of its parent class, with its own implementation. This is an important part of polymorphism and OOPs concept in C++ programming.**
+
+- Function overriding is a feature that allows a derived class to provide a new implementation for a function that is already defined in its base class. This is essential for building hierarchical relationships between classes, where derived classes inherit characteristics and behavior from their base classes but can also customize or extend those behaviors as needed.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class parent {
+    public:
+        // overridden function
+        void display()
+        {
+            cout << "Hello from the parent class" << endl;
+        }
+};
+
+class child : public parent {
+    public:
+        // overriding function
+        void dislay()
+        {
+            cout << "Hello from the child class" << endl;
+        }
+};
+
+int main()
+{
+    child obj;
+    obj.dislay(); // the output will be :"Hello from the child class" 
+
+    return 0;
+}
+```
+
+```cpp
+// Program to call the overridden function in the derived class
+#include <iostream>
+using namespace std;
+
+class parent {
+    public:
+        // overridden function
+        void display()
+        {
+            cout << "Hello from the parent class" << endl;
+        }
+};
+
+class child : public parent {
+    public:
+        // overriding function
+        void dislay()
+        {
+            parent::display(); // overridden function called
+            cout << "Hello from the child class" << endl;
+        }
+};
+
+int main()
+{
+    child obj;
+    obj.dislay(); // the output will be :"Hello from the child class" 
+
+    return 0;
+}
+```
+```cpp
+// Program to access overridden function by object of derived class
+#include <iostream>
+using namespace std;
+
+class parent {
+    public:
+        // overridden function
+        void display()
+        {
+            cout << "Hello from the parent class" << endl;
+        }
+};
+
+class child : public parent {
+    public:
+        // overriding function
+        void dislay()
+        {
+            cout << "Hello from the child class" << endl;
+        }
+};
+
+int main()
+{
+    child obj;
+    obj.dislay(); // the output will be :"Hello from the child class" 
+    obj.parent::display();
+    return 0;
+}
+```
+---
