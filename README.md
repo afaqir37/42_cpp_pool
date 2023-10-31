@@ -999,3 +999,12 @@ Hello from the child class
 Hello from the parent class
 ```
 ---
+#### <ins>About Namespaces</ins>
+- Basically, a namespace is a way to group together related functions, classes, variables, and other symbols. Most of the symbols of the standard library are defined inside a namespace called std. This means that if you are outside this namespace (which is always the case unless you are developing or extending the standard library itself), you need to prepend std:: to be able to access these symbols, for example, std::cout.
+
+- As a convenience, the using keyword allows you to import some or all of these symbols and later not have to specify their namespace. For example, if you write using std::cout, then you can later simply write cout instead of std::cout. If you write using namespace std, it imports all the symbols inside std, which is considered bad practice especially in header files, because it imports so many symbols that it increases the risks of collisions with your own symbols, or with the symbols of any compilation unit that includes the header.
+
+- The problem with using namespace std; is that it doesn't just "pull in" cout. It pulls in EVERYTHING in the std:: namespace. Things you've probably never heard of and may never use in your career are now available by a short name.
+- So as you're writing your own code you might be intending to call a function that you wrote, but actually end up calling some function in the std:: namespace without knowing it, just because they have the same name. Or you might see warnings or errors having to do with picking a name that's already taken.
+- That's why it's recommended to either not do using namespace std; at all (and just put std:: in front of everything that needs it) OR go with the lesser-known-but-in-my-opinion-much-better option, using std::cout;.
+- If you go with using std::cout; that will let you just use cout directly like you want, but it won't pull everything from std:: into the namespace. You can very specifically and individually include just the things you want to pull in (cin, cout, string, etc) with none of the downsides.
