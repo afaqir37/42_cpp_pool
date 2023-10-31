@@ -748,6 +748,82 @@ int main()
     c2.showNumber();
 }
 ```
+---
+#### <ins>Array of objects</ins>
+- An array of objects is a collection of objects of the same class type that are stored in contiguous memory locations.
+```cpp
+// Program to demonstrate array of objects
+#include <iostream>
+using namespace std;
 
+class student
+{
+    string name;
+    int id;
+
+public:
+    void setData()
+    {
+        cout << "Enter id and name of student: ";
+        cin >> id >> name;
+    }
+
+    void getData()
+    {
+        cout << "Student info..." << endl;
+        cout << "Id: " << id << endl;
+        cout << "Name: " << name << endl;
+        cout << "-----------------------" << endl;
+    }
+};
+
+int main()
+{
+    student obj[10];
+    int size;
+    cout << "Size of student (1-10): ";
+    cin >> size;
+    while (size <= 0 || size > 10)
+    {
+        cout << "Size of student (1-10): ";
+        cin >> size;
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        obj[i].setData();
+    }
+    for (int i = 0; i < size; i++)
+    {
+        obj[i].getData();
+    }
+    return 0;
+}
+```
+```
+Output:
+Size of student (1-10): 4
+Enter id and name of student: 1 Messi
+Enter id and name of student: 2 Cristiano
+Enter id and name of student: 3 Maradona
+Enter id and name of student: 4 Pele
+Student info...
+Id: 1
+Name: Messi
+-----------------------
+Student info...
+Id: 2
+Name: Cristiano
+-----------------------
+Student info...
+Id: 3
+Name: Maradona
+-----------------------
+Student info...
+Id: 4
+Name: Pele
+-----------------------
+```
+---
 
 
