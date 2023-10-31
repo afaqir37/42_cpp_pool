@@ -509,8 +509,41 @@ int main()
 ---
 #### <ins>Passing Objects as arguments by Reference and by Pointer</ins>
 ##### Passing Objects by reference
+- It allows a function to modify a variable without having to create a copy of it. We have to declare reference variables. The memory location of the passed variable and parameter is the same and therefore, any change to the parameter reflects in the variable as well.
+- A reference is the same object, just with a different name.
+- A reference must refer to an object. Since references can't be NULL, they are safer to use.
+- A reference cannot be left without initializing it.
+- A reference cannot be re-assigned.
+- A reference has the same memory address as the item it references.
+- A pointer needs to be dereferenced with * to access the memory location it points to, whereas a reference can be used directly.
+
+**Example**
 ```cpp
-// Passing by reference
+// C++ program to swap two numbers using pass by reference
+#include <iostream>
+using namespace std;
+
+void swap(int &a, int &b)
+{
+    int tmp = a;
+    a = b;
+    b = tmp;
+}
+
+int main()
+{
+    int a = 42, b = 92;
+    printf("before swap: a = %d | b = %d\n", a, b);
+
+    swap(a, b);
+
+    printf("after swap, a = %d | b = %d\n", a, b);
+    return 0;
+}
+```
+
+```cpp
+// C++ program that uses passing by reference with objects.
 #include <iostream>
 using namespace std;
 
@@ -552,6 +585,8 @@ int main()
 }
 ```
 ##### Passing Objects by Pointer
+- The difference between pass-by-reference and pass-by-pointer is that pointers can be NULL or reassigned whereas references cannot.
+- Use pass-by-pointer if NULL is a valid parameter value or if you want to reassign the pointer. Otherwise, use constant or non-constant references to pass arguments.
 ```cpp
 // Passing objects by POINTER
 #include <iostream>
@@ -594,6 +629,10 @@ int main()
     c3.showData();
 }
 ```
+**More about pass-by-reference**
+> Pass-by-reference is more efficient than pass-by-value, because it does not copy the arguments. The formal parameter is an alias for the argument. When the called function read or write the formal parameter, it is actually read or write the argument itself.
+
+> The difference between pass-by-reference and pass-by-value is that modifications made to arguments passed in by reference in the called function have effect in the calling function, whereas modifications made to arguments passed in by value in the called function can not affect the calling function. Use pass-by-reference if you want to modify the argument value in the calling function. Otherwise, use pass-by-value to pass arguments.
 ---
 #### <ins>Types of Class Constructors</ins>
 ###### <ins>Default Constructor</ins>
