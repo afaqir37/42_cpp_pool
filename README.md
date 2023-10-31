@@ -882,8 +882,8 @@ int main(void)
 
 ###### Can we overload all operators?
 Almost all operators can be overloaded except a few. Following is the list of operators that cannot be overloaded.
-> sizeof
-> typeid
-> Scope resolution (::)
-> Class member access operator (.(dot), .* (pointer to member operator))
-> ternary or conditional (?:)
+- sizeof
+- typeid
+- Scope resolution (::)
+- Class member access operator (.(dot), .* (pointer to member operator))
+- ternary or conditional (?:)
