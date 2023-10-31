@@ -951,11 +951,15 @@ class child : public parent {
 int main()
 {
     child obj;
-    obj.dislay(); // the output will be :"Hello from the child class" 
+    obj.dislay();
 
     return 0;
 }
 ```
+output:
+> Hello from the parent class
+> Hello from the child class
+
 ```cpp
 // Program to access overridden function by object of derived class
 #include <iostream>
@@ -982,9 +986,12 @@ class child : public parent {
 int main()
 {
     child obj;
-    obj.dislay(); // the output will be :"Hello from the child class" 
+    obj.dislay();
     obj.parent::display();
     return 0;
 }
 ```
+output:
+> Hello from the child class
+> Hello from the parent class
 ---
