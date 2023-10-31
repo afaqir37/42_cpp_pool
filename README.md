@@ -956,9 +956,11 @@ int main()
     return 0;
 }
 ```
+```
 output:
-> Hello from the parent class
-> Hello from the child class
+Hello from the parent class
+Hello from the child class
+```
 
 ```cpp
 // Program to access overridden function by object of derived class
@@ -991,7 +993,9 @@ int main()
     return 0;
 }
 ```
+```
 output:
-> Hello from the child class
-> Hello from the parent class
+Hello from the child class
+Hello from the parent class
+```
 ---
