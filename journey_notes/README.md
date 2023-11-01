@@ -29,7 +29,7 @@ Essentially, for std::cin statements you use *ignore* before you do a *getline* 
 
 #### <ins>About std::istream::ignore()</ins>
 ##### source: cplusplus.com
-##### istream& ignore (streamsize n = 1, int delim = EOF);
+##### <ins>istream& ignore (streamsize n = 1, int delim = EOF);</ins>
 
 Extract characters from the input sequence and discards them, until either n characters have been extracted, or one compares equal to *delim*
 
@@ -55,7 +55,8 @@ int main()
     cout << "Enter a name: ";
     cin >> name;
     cout << "Enter a line: ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // this line will  skip all the remaining characters in the input buffer until it reaches '\n' of eof
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // this line will  skip all the remaining characters in
+                                                        //the input buffer until it reaches '\n' or eof.
     getline(cin, line);// the cin buffer now is ready to receive new input
     cout << line << endl;
 }
