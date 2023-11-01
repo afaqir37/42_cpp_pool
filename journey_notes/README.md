@@ -30,7 +30,7 @@ Essentially, for std::cin statements you use *ignore* before you do a *getline* 
 #### <ins>About std::istream::ignore()</ins>
 ###### source: cplusplus.com
 ###### istream& ignore (streamsize n = 1, int delim = EOF);
-```
+
 Extract characters from the input sequence and discards them, until either n characters have been extracted, or one compares equal to *delim*
 
 The function also stops extracting characters i the end-of-file is reached.
