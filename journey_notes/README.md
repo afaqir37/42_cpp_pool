@@ -23,13 +23,13 @@ Enter a name: ahmed
 Enter a line:
 ```
 So the issue here is when running the program it never stopped to ask for the line. It just skipped over it.
-The problem occurs because when you type ==Ahmed== and press enter, the input stream contains ==Ahmed/n== and ==Ahmed== is parsed into the 'name' variable while '\n' is still in the stream. Reading the doc for *getline* function by default it will look in the *istream* until a '\n' is encountered. In this example, since '\n' is in the stream, it looks like it "skipped" it but it worked properly.
+The problem occurs because when you type ```Ahmed``` and press enter, the input stream contains ```Ahmed/n```and ```Ahmed``` is parsed into the 'name' variable while '\n' is still in the stream. Reading the doc for *getline* function by default it will look in the *istream* until a '\n' is encountered. In this example, since '\n' is in the stream, it looks like it "skipped" it but it worked properly.
 
 Essentially, for std::cin statements you use *ignore* before you do a *getline* call, because when a user inputs something with std::cin, they hit enter and a '\n' char gets into the **cin** buffer. Then if you use *getline*, it gets the newline char instead of the string you want. So you do a ```std::cin.ignore(1000, '\n')``` 
 
 <ins>About std::istream::ignore()</ins>
 *source: cplusplus.com*
-**istream& ignore (streamsize n = 1, int delim = EOF);**
+```istream& ignore (streamsize n = 1, int delim = EOF);```
 ```
 Extract characters from the input sequence and discards them, until either n characters have been extracted, or one compares equal to *delim*
 
