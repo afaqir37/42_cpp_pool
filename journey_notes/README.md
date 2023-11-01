@@ -27,7 +27,7 @@ The problem occurs because when you type ```Ahmed``` and press enter, the input 
 
 Essentially, for std::cin statements you use *ignore* before you do a *getline* call, because when a user inputs something with std::cin, they hit enter and a '\n' char gets into the **cin** buffer. Then if you use *getline*, it gets the newline char instead of the string you want. So you do a ```std::cin.ignore(1000, '\n')``` 
 
-<ins>About std::istream::ignore()</ins>
+#### <ins>About std::istream::ignore()</ins>
 *source: cplusplus.com*
 ```istream& ignore (streamsize n = 1, int delim = EOF);```
 ```
