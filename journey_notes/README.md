@@ -46,6 +46,7 @@ Note that the delimiting character is extracted, and thus the next input operati
 **Solution**
 ```cpp
 #include <iostream>
+#include <limits>
 using namespace std;
 
 int main()
@@ -60,4 +61,10 @@ int main()
     getline(cin, line);// the cin buffer now is ready to receive new input
     cout << line << endl;
 }
+```
+```
+output:
+Enter a name: ahmed
+Enter a line: hello world
+hello world
 ```
