@@ -1,5 +1,6 @@
 #ifndef _PHONE_BOOK_
 # define _PHONE_BOOK_
+#include <iostream>
 #include <string>
 
 class Contact {
@@ -14,8 +15,6 @@ public:
 
 class PhoneBook {
     Contact book[8];
-    
-
 };
 
 
