@@ -96,6 +96,18 @@ cout << setfill('-') << setw(10) << "+" << endl;
 - <ins>Exampe</ins>
 ```cpp
 using namespace std;
-cout << setw(10) << left << "test" << endl;
+cout << setfill('-') << setw(10) << left << "test" << endl;
+```
+the output:
+```
+test------
+```
+```cpp
+using namespace std;
+cout << setfill('-') << setw(10) << right << "test" << endl;
+```
+the output:
+```
+------test
 ```
 ---
