@@ -3,22 +3,41 @@
 void PhoneBook::add(void)
 {
     if (index == 8)
+    {
         index = 0;
+        full = 1;
+    }
     book[index].init();
     index++;
 }
 
 void PhoneBook::search(void)
 {
-    int tmp;
-    
+    int tmp = 0;
+    int fakeIndex = index;
+
+    if (index == 0)
+        return;
+    std::cout << std::setfill('-') << std::setw(10) << "index"
+              << "|" << std::setw(10) << "firstname"
+              << "|" << std::setw(10) << "lastname"
+              << "|" << std::setw(10) << "nickname" << std::endl;
+    if (full)
+        fakeIndex = 8;
+    while (tmp < fakeIndex)
+    {
+        std::cout << std::setw(10) << tmp << "|";
+        book[tmp].display2();
+        tmp++;
+    }
+
     std::cout << "Enter an index: " << std::endl;
     while (1)
     {
         std::cin >> tmp;
         if (std::cin.eof())
-            return ;
-        if (tmp >= 8 || tmp >= index || tmp < 0)
+            return;
+        if (tmp >= 8 || tmp >= fakeIndex || tmp < 0)
         {
             std::cout << "Enter a valid index: " << std::endl;
             continue;
@@ -37,6 +56,7 @@ int main(void)
     std::string command;
 
     phonebook.index = 0;
+    phonebook.full = 0;
     while (1)
     {
         if (std::cin.eof())
