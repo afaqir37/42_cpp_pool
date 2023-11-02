@@ -18,7 +18,7 @@ void PhoneBook::search(void)
 
     if (index == 0)
         return;
-    std::cout << std::setfill('-') << std::setw(10) << "index"
+    std::cout << std::setw(10) << "index"
               << "|" << std::setw(10) << "firstname"
               << "|" << std::setw(10) << "lastname"
               << "|" << std::setw(10) << "nickname" << std::endl;
