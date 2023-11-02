@@ -17,14 +17,24 @@ public:
     {
         std::cout << "Enter first name: ";
         std::getline(std::cin, firstName);
+        if (std::cin.eof())
+            return;
         std::cout << "Enter last name: ";
         std::getline(std::cin, lastName);
+        if (std::cin.eof())
+            return;
         std::cout << "Enter a nickname: ";
         std::getline(std::cin, nickname);
+        if (std::cin.eof())
+            return;
         std::cout << "Enter the phone number: ";
         std::getline(std::cin, phoneNumber);
+        if (std::cin.eof())
+            return;
         std::cout << "Enter the darkestSecret: ";
         std::getline(std::cin, darkestSecret);
+        if (std::cin.eof())
+            return;
     }
 
     void display(void)
