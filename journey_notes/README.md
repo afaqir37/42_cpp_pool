@@ -157,6 +157,8 @@ With padding, the data member will be aligned as follow :
 -------------------------------------------------
 | c | - | - | - | i | i | i | i | s | s | - | - |  size = 12 bytes
 -------------------------------------------------
+ 0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xA 0xB
+
 ```
 With padding now, whenever the CPU needs to retrieve a value, it will only perform *one CPU cycle or one word*, which <ins>improve memory access speed, as modern CPUs can read or write aligned data more efficiently. </ins> <br>
 
@@ -171,7 +173,7 @@ class Example {
     short s;
 };
 ```
-##### <ins>Now let's pass to how we can access private data members without member function :O</ins>
+#### <ins>Now let's pass to how we can access private data members without member function :O</ins>
 When we create an instance of a class with two int type attributes, a total of 8 bytes are allocated on the stack to hold two 4 butes int. And it happens that when we initialize an instance we get the memory block which holds these two integers.
 ```cpp
 // Program that access private data member of a class without using any member function
@@ -234,4 +236,4 @@ In order to access the private attributes of the instance we can convert the cla
 In line 209, the test object is converted to char pointer. Convertin to char pointer lets us perform arithmetic operations on the pointer with a least count of increment and decrement of 1 bytes. If we convert the pointer to int pointer, then ```pointer++``` will result in a 4 bytes increment. <br>
 In line 214, the pointer is dereferenced to get the char at that location, and in line 215 we are incrementing the pointer by 4, i.e moving 4 bytes forward to access the next element. Why we are incrementing it by 4 ? because we know the compiler will perform a padding operation by adding 3 empty bytes to the *char a* and then it will put the *int i* next to it, after that it will put *char c* immediately after the int var, with an extra 3 empty bytes to this char. <br>
 
-** Make sure of the offset you use when you increment the pointer pointed to the object. Use offsetof() func to make sure of the offset you will use :) **
+### Make sure of the offset you use when you increment the pointer pointed to the object. Use offsetof() func to make sure of the offset you will use  ###
