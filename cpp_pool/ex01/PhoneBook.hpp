@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <limits>
+#include <stdlib.h>
+int checkString(const char *s);
 
 class Contact
 {

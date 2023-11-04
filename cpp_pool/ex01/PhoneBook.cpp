@@ -14,6 +14,8 @@ void PhoneBook::add(void)
 void PhoneBook::search(void)
 {
     int tmp = 0;
+    std::string num;
+    std::string str;
     int fakeIndex = index;
 
     if (index == 0)
@@ -34,21 +36,29 @@ void PhoneBook::search(void)
     std::cout << "Enter an index: " << std::endl;
     while (1)
     {
-        std::cin >> tmp;
+        std::cout << "entering..." << std::endl;
+        std::getline(std::cin, num);
+        if (std::cin.fail())
+        {
+            std::cout << "Enter a valid index: " << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
         if (std::cin.eof())
             return;
-        if (tmp >= 8 || tmp >= fakeIndex || tmp < 0)
+      
+        if (checkString(num.c_str()) || atoi(num.c_str()) >= 8 || atoi(num.c_str()) >= fakeIndex || atoi(num.c_str()) < 0)
         {
             std::cout << "Enter a valid index: " << std::endl;
             continue;
         }
         else
         {
-            book[tmp].display();
+            book[atoi(num.c_str())].display();
             break;
         }
     }
-    std::cin.ignore();
 }
 int main(void)
 {
