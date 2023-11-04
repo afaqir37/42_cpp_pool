@@ -36,15 +36,7 @@ void PhoneBook::search(void)
     std::cout << "Enter an index: " << std::endl;
     while (1)
     {
-        std::cout << "entering..." << std::endl;
         std::getline(std::cin, num);
-        if (std::cin.fail())
-        {
-            std::cout << "Enter a valid index: " << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            continue;
-        }
         if (std::cin.eof())
             return;
       
