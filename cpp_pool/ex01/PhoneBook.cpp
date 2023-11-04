@@ -1,4 +1,5 @@
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 void PhoneBook::add(void)
 {
@@ -52,11 +53,17 @@ void PhoneBook::search(void)
         }
     }
 }
-int main(void)
+int main(int ac, char **av)
 {
     PhoneBook phonebook;
     std::string command;
 
+    (void)av;
+    if (ac != 1)
+    {
+        std::cout << "just run the program without argument ;)" << std::endl;
+        return 0;
+    }
     phonebook.index = 0;
     phonebook.full = 0;
     while (1)
