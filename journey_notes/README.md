@@ -210,6 +210,9 @@ int main()
 
     char *ptr = (char *)&obj;
 
+    // to use the below commented lines of code, we need to set the data member of the class as public.
+    // we need this commented lines in case we don't know how the data members are aligned in memory so we can access to them successfully,
+    // but in case we know this info, we can skip them :)
     // cout << "offsetof a: " << offsetof(test, a) << " "
     //      << "offsetof b: " << offsetof(test, b) << "offsetof c: " << offsetof(test, c) << endl;
 
