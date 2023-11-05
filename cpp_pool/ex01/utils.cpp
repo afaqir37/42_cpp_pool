@@ -10,10 +10,10 @@ int checkString(const char *str)
         str = str + 1;
 
     for (int i = 0; str[i]; i++)
-        if (!isdigit(str[i]))
+        if (!std::isdigit(str[i]))
             return 1;
 
-    if (strlen(str) == 2 &&  str[0] != '+' && str[0] != '-')
+    if (std::strlen(str) == 2 &&  str[0] != '+' && str[0] != '-')
         return 1;
     
     return 0;

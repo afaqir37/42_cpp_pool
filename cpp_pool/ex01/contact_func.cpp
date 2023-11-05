@@ -3,7 +3,7 @@
 int Contact::containsOnlyWhiteSpaces(const char *str)
 {
 	for (int i = 0; str[i]; i++)
-		if (!isspace(str[i]))
+		if (!std::isspace(str[i]))
 			return 0;
 	return 1;
 }

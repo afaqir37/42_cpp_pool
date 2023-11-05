@@ -41,14 +41,14 @@ void PhoneBook::search(void)
         if (std::cin.eof())
             return;
       
-        if (checkString(num.c_str()) || atoi(num.c_str()) >= 8 || atoi(num.c_str()) >= fakeIndex || atoi(num.c_str()) < 0)
+        if (checkString(num.c_str()) || std::atoi(num.c_str()) >= 8 || std::atoi(num.c_str()) >= fakeIndex || std::atoi(num.c_str()) < 0)
         {
             std::cout << "Enter a valid index: " << std::endl;
             continue;
         }
         else
         {
-            book[atoi(num.c_str())].display();
+            book[std::atoi(num.c_str())].display();
             break;
         }
     }

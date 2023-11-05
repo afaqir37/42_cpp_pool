@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
-#include <stdio.h>
+#include <cctype>
+#include <cstdio>
 
 int main(int argc, char **argv)
 {
@@ -9,8 +10,8 @@ int main(int argc, char **argv)
     else
     {
         for (int i = 1; i < argc; i++)
-            for (size_t j = 0; j < strlen(argv[i]); j++)
-                putchar(toupper(argv[i][j]));
+            for (size_t j = 0; j < std::strlen(argv[i]); j++)
+                std::putchar(std::toupper(argv[i][j]));
 
         std::cout << std::endl;
     }
