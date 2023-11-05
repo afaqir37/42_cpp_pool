@@ -240,3 +240,26 @@ In line 209, the test object is converted to char pointer. Convertin to char poi
 In line 214, the pointer is dereferenced to get the char at that location, and in line 215 we are incrementing the pointer by 4, i.e moving 4 bytes forward to access the next element. Why we are incrementing it by 4 ? because we know the compiler will perform a padding operation by adding 3 empty bytes to the *char a* and then it will put the *int i* next to it, after that it will put *char c* immediately after the int var, with an extra 3 empty bytes to this char. <br>
 
 ### Make sure of the offset you use when you increment the pointer pointed to the object. Use offsetof() func to make sure of the offset you will use  ###
+
+---
+#### <ins>Difference between std::endl and '\n'</ins>
+
+- The only difference is that std::endl flushes the output buffer, and '\n' doesn't. If you don't want the buffer flushed frequently, use '\n'. If you (for example, if you want to get all the output, and the program is unstable), use ```std::endl```.
+ **importante note from cppreference.com : ** <br>
+ >In many implementations, standard output is line-buffered, and writing '\n' causes flush anyway, unless
+ >```std::ios::sync_with_stdio(false)``` was executed.
+
+ ### <ins>MORE ABOUT OUTPUT BUFFER AND FLUSHING BUFFER</ins>
+ - Consider writing to a file. This is an expensive operation. If in your code your write one byte at a time, then each write of a byte is giong to be very costly. So a common way to improve performance is to store the data that you are writing in a temprary buffer. Only when there is a lot of data is the buffer written to the file. By postponing the writes, and wriing a large block in one go, performance is improved.
+
+---
+#### <ins>What is the role of c_str()<ins>
+- c_str() returns a const char * that points to a null-terminated string (i.e., a C-styel string). It is useful when you want to pass the "contents" of an std::string to a function that expects to work with a C-style string.
+- in C++, you define your strings as: ```std::string MyString;``` instead of ```char MyString[20]```. While writing C++ code, you encounter some C functions which require C string as parameter like ```int checkString(const char *)```.
+- Now this is a problem. You are working with C++ and you are using ```std::string``` string variables. But this C function is asking for a C string. How do you convert your std::string to a standard C string? <br>
+Like this: <br>
+```cpp
+std::string MyString;
+MyString = "hello world;
+int res = checkString(MyString.c_str());
+```
