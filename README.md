@@ -1008,3 +1008,8 @@ Hello from the parent class
 - So as you're writing your own code you might be intending to call a function that you wrote, but actually end up calling some function in the std:: namespace without knowing it, just because they have the same name. Or you might see warnings or errors having to do with picking a name that's already taken.
 - That's why it's recommended to either not do using namespace std; at all (and just put std:: in front of everything that needs it) OR go with the lesser-known-but-in-my-opinion-much-better option, using std::cout;.
 - If you go with using std::cout; that will let you just use cout directly like you want, but it won't pull everything from std:: into the namespace. You can very specifically and individually include just the things you want to pull in (cin, cout, string, etc) with none of the downsides.
+---
+### <ins>Default Constructors in C++<ins>
+- A default constructor is a constructor that either has no parameters, or if it has parameters, all the parameters have default values.
+- If no user-defined constructor exits for a class A and one is needed, the compiler implicity declares a default parameterless constructor A::A().
+- This constructor is an inline public member of its class. The compiler will implicity *define* A::A() when the compiler uses thei constructor to create an object of type A. The constructor will have on constructor initializer and a null body.
