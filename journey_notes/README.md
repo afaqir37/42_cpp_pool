@@ -263,3 +263,106 @@ std::string MyString;
 MyString = "hello world;
 int res = checkString(MyString.c_str());
 ```
+
+---
+### <ins>Why should I use new instead of malloc()</ins>
+- Each has there own advantage but let's see some scenarios where we need to use the new operator instead of malloc(): <br>
+**Constructors/Destructors**
+The class constructor is invoked by the new operator but not by the malloc. Similarly, destructor invoked by delete, not by the free.
+```cpp
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    Animal() {
+        cout << "Constructed\n";
+    }
+    ~Animal() {
+        cout << "Deconstructed\n";
+    }
+};
+
+int main()
+{
+    Animal* ptr = new Animal();
+
+    delete ptr;
+    return 0;
+}
+```
+```
+output:
+Constructed
+Deconstructed
+```
+**Type Safety**
+The malloc() returns a ```void*``` which is not type-safe. ```new T``` returns a pointer to T.
+
+### <ins>Exception handling of the new operator</ins>
+- When the new operator request for the memory then if there is a free memory is available then it returns a valid address, either it throws bad_alloc exception.
+
+- Let's see an example where we will catch the bad_alloc exception through a try-catch block.
+```cpp
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    Animal() {
+        cout << "Constructed\n";
+    }
+    ~Animal() {
+        cout << "Deconstructed\n";
+    }
+};
+
+int main()
+{
+    int *ptr = nullptr;
+    try {
+        ptr = new int[999999999999999];
+    }
+    catch(...)
+    {
+        cout << "allocation failed!\n";
+        return -1;
+    }
+    delete[] ptr;
+}
+```
+```
+output:
+allocation failed!
+```
+- To avoid the exception throw we can use "nothrow" with the new operator. When we are used "nothrow" with the new operator, it returns a valid address if it is available otherwise it returns a null pointer.
+```cpp
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    Animal() {
+        cout << "Constructed\n";
+    }
+    ~Animal() {
+        cout << "Deconstructed\n";
+    }
+};
+
+int main()
+{
+    int *ptr = nullptr;
+    ptr = new(nothrow) int[999999999999999];
+    if (!ptr)
+    {
+        cout << "Quitting\n";
+        return -1;
+    }
+    delete[] ptr;
+}
+```
+```
+output:
+Quitting
+```
