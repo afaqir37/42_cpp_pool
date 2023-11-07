@@ -1013,3 +1013,55 @@ Hello from the parent class
 - A default constructor is a constructor that either has no parameters, or if it has parameters, all the parameters have default values.
 - If no user-defined constructor exits for a class A and one is needed, the compiler implicity declares a default parameterless constructor A::A().
 - This constructor is an inline public member of its class. The compiler will implicity *define* A::A() when the compiler uses thei constructor to create an object of type A. The constructor will have on constructor initializer and a null body.
+---
+### <ins>Pointer to function && Pointer to member function in C++</ins>
+- in C++, a pointer to a function refers to the memory address where the function's code starts. It can be used to call the function indirectly. Here's a basic example : 
+```cpp
+#include <iostream>
+
+void myFunction() {
+    std::cout << "Hello, World!";
+}
+
+int main() {
+    // Declare a function pointer
+    void (*ptr)();
+
+    // Point it to myFunction
+    ptr = myFunction;
+
+    // Call the function through the pointer
+    ptr();  // Outputs: Hello, World!
+
+    return 0;
+}
+```
+- in this example, ptr is a pointer to a function that takes no arguments and returns void. We assign it the address of *myFunction*, and then we use ptr to call *myFunction*.
+- When it comes to member functions of a class, the syntax is a bit different. You need to use the class name and the scope resolution operator (::). Here's an example:
+```cpp
+class MyClass {
+public:
+    void myMethod() {
+        std::cout << "Hello, World!";
+    }
+};
+
+int main() {
+    // Declare a pointer to a member function of MyClass
+    void (MyClass::*ptr)();
+
+    // Point it to myMethod
+    ptr = &MyClass::myMethod;
+
+    // Create an object of MyClass
+    MyClass obj;
+
+    // Call the method through the pointer
+    (obj.*ptr)();  // Correct
+
+    // obj.ptr();  // Incorrect
+
+    return 0;
+}
+```
+- in this example, *ptr* is a pointer to a member function of *MyClass* that takes no arguments and returns void. We assign it the address of *myMethod*, nad then we use *ptr* to call *myMethod* on an object of *MyClass*.

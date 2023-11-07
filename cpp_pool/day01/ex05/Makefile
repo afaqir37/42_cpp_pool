@@ -1,12 +1,12 @@
 CXX = c++
-CXXFLAGS =  -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp Zombie.cpp zombieHorde.cpp
+CXXFLAGS =  -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
-NAME = exe
+NAME = main
 
 all: $(NAME)
 
-$(NAME): $(OBJ) Zombie.hpp
+$(NAME): $(OBJ) Harl.hpp
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean:

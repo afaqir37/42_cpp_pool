@@ -6,7 +6,7 @@ NAME = main
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) HumanA.hpp HumanB.hpp Weapon.hpp
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean:
