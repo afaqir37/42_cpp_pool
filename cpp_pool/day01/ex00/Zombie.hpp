@@ -1,7 +1,7 @@
 #ifndef _ZOMBIE_HPP_
 #define _ZOMBIE_HPP_
 #include <iostream>
-
+#include <new>
 class Zombie
 {
 private:

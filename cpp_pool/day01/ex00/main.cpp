@@ -6,6 +6,8 @@ int main()
 	obj.announce();
 
 	Zombie *obj2 = newZombie("NUMBER_2");
+	if (!obj2)
+		return (-1);
 	obj2->announce();
 	delete obj2;
 

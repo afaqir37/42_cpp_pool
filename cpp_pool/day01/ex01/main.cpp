@@ -17,7 +17,7 @@ int main()
 
 	std::cout << "------------------------\n";
 
-	Zombie* obj3 = zombieHorde(10, "BadEnemy");
+	Zombie* obj3 = zombieHorde(10000000, "BadEnemy");
 	if (!obj3)
 		return (-1);
 	for (int i = 0; i < 10 ; i++)
