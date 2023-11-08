@@ -9,6 +9,7 @@ private:
 
 public:
 	HumanB(std::string name);
+	HumanB(std::string name, Weapon& wpn);
 	void setWeapon(Weapon& club);
 	void attack(void);
 };

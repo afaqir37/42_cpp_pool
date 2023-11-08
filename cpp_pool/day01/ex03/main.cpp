@@ -17,7 +17,15 @@ int main()
 		HumanB ali("Ali");
 		ali.setWeapon(j);
 		ali.attack();
-		j.setType("Pistol");
+		j.setType("Pistjjol");
 		ali.attack();
 	}
+	std::cout << "-------------------------------\n";
+	{
+		Weapon h = Weapon("Ma9la");
+		HumanB anas("Anass");
+		anas.attack();
+		anas.setWeapon(h);
+		anas.attack();
+	}	
 }
