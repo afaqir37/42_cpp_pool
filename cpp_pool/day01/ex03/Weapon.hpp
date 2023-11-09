@@ -9,10 +9,6 @@ private:
 public:
 	Weapon() {};
 	Weapon(std::string name);
-	~Weapon()
-	{
-		std::cout << "destroyed\n";
-	}
 	const std::string& getType(void);
 	void setType(std::string name);
 };

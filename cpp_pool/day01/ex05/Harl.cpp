@@ -38,7 +38,7 @@ void Harl::complain(std::string level)
     {
         if (array[i].level == level)
         {
-            (this->*(array[i].ptr))();
+            (this->*array[i].ptr)();
             break;
         }
     }

@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS =  -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXXFLAGS =  -Wall -Wextra -Werror -std=c++98 -Wpedantic
 SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = main
