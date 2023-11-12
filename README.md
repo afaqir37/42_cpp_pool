@@ -1065,3 +1065,35 @@ int main() {
 }
 ```
 - in this example, *ptr* is a pointer to a member function of *MyClass* that takes no arguments and returns void. We assign it the address of *myMethod*, nad then we use *ptr* to call *myMethod* on an object of *MyClass*.
+
+---
+### <ins>Copy Constructor in C++</ins>
+- A copy constructor in C++ is a special constructor that initializes a new object as a copy of an existing object. The copy constructor is used whenever an object is initialized from another of the same type, unless move semantics are involved.
+- The copy constructor is called in several situations, including:
+* When an object is initialized with another object of the same type: Fixed a = b;
+* When an object is passed by value to a function.
+* When an object is returned by value from a function.
+- If you don't define a copy constructor, the C++ compiler will automatically generate one for you. This default copy constructor performs a shallow copy, which might not be appropriate for classes that manage dynamic memory or other resources.
+- The default copy constructor performs a shallow copy of the object. This means that for each non-static data member of the object, the value is copied from the source object to the destionation object.
+```cpp
+#include <cstring>
+#include <iostream>
+
+class test {
+    public:
+        char *s;
+        
+};
+
+int main(void)
+{
+   test obj;
+   obj.s = (char *)malloc(10);
+   strcpy(obj.s, "bye");
+
+   std::cout << "str: " << obj.s << '\n';
+   test obj2(obj);
+   std::cout << "second str: " << obj2.s << '\n';
+}
+```
+- In the above code, s is a pointer to a dynamically array. When the default copy constructor performs a shallow copy,it copies the pointer s, not the actual array that *s* points to. This means that both *obj* and *obj2* end up pointing to the same array. If you modify the array through one object, the change will be visible when you access the array through the other object. Also, if one objet is destroyed and its destructor frees the array, the other object will be left with a dangling pointer.
