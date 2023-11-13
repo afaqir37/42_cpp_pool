@@ -434,3 +434,9 @@ std::cout << obj2;
 ```
 
 - By returning a reference to the `std::ostream` object, the `operator<<` function allows for more concise and readable code.
+#### **<ins>As an aside**</ins>
+- When the compiler compiles a function, it performs name mangling, which means the compiled name of the function is altered (“mangled”) based on various criteria, such as the number and type of parameters, so that the linker has unique names to work with.
+
+- For example, some function with prototype int fcn() might compile to name __fcn_v, whereas int fcn(int) might compile to name __fcn_i. So while in the source code, two overloaded functions share a name, in compiled code, the names are actually unique.
+
+- There is no standardization on how names should be mangled, so different compilers will produce different mangled names.
