@@ -366,3 +366,71 @@ int main()
 output:
 Quitting
 ```
+---
+### <ins>Some points about Overloading the '<<' operator</ins>
+- To overload the `<<` operator for your `test` class, you can add a friend function in your class definition. Here's how you can do it:
+
+```cpp
+#include <cstring>
+#include <iostream>
+
+class test {
+    public:
+        int a;
+        test(const test& other)
+        {
+            std::cout << "copy constructed\n";
+            a = other.a;
+        }
+        test() 
+        {
+            std::cout << "constructed\n";
+        }
+
+        friend std::ostream& operator<<(std::ostream& os, const test& t)
+        {
+            os << "test object: " << t.a;
+            return os;
+        }
+};
+
+int main(void)
+{
+    test t;
+    t.a = 5;
+    std::cout << t << std::endl;
+}
+```
+
+- In this code, the `operator<<` function is a friend of the `test` class, so it can access the private and protected members of `test`. It takes an `std::ostream` object and a `test` object as parameters, and it returns an `std::ostream` object. Inside the function, it outputs the `test` object to the `std::ostream` object in a specific format, and then returns the `std::ostream` object.
+- The `std::ostream` class is part of the C++ Standard Library and provides functions for outputting data to output streams, such as the console or a file. 
+
+- When you overload the `<<` operator for a custom class, you typically want to allow instances of that class to be outputted using `std::cout`, which is an instance of `std::ostream`. 
+
+- By defining the overloaded `<<` operator to take an `std::ostream` reference as its first parameter and a reference to your custom class as its second parameter, you enable the use of `std::cout << yourObject` syntax. 
+
+- The function returns a reference to the `std::ostream` to allow chaining of output operations. For example, `std::cout << obj1 << obj2;`. 
+
+- Here's how you can add the overloaded `<<` operator to your `test` class:
+
+```cpp
+friend std::ostream& operator<<(std::ostream& os, const test& t)
+{
+    os << "test object: " << t.a;
+    return os;
+}
+```
+
+- This function can now be used to output a `test` object to any output stream, not just `std::cout`. For example, you could also output to an `std::ofstream` to write the object to a file.
+- The `operator<<` function returns a reference to an `std::ostream` object to allow for chaining of output operations. 
+
+- When you write something like `std::cout << obj1 << obj2;`, what's actually happening is that `operator<<(std::cout, obj1)` is called first, which returns a reference to `std::cout`. Then `operator<<(std::cout, obj2)` is called on that returned reference.
+
+- If the `operator<<` function didn't return a reference to the `std::ostream` object, you wouldn't be able to chain output operations like this. Instead, you would have to write each output operation on a separate line:
+
+```cpp
+std::cout << obj1;
+std::cout << obj2;
+```
+
+- By returning a reference to the `std::ostream` object, the `operator<<` function allows for more concise and readable code.

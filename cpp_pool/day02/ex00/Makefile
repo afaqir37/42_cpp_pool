@@ -1,8 +1,8 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = Fixed.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
-Name = a.out
+NAME = main
 
 all: $(NAME)
 
@@ -15,4 +15,4 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-all: fclean re
+re: fclean all
