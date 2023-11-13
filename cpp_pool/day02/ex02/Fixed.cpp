@@ -98,3 +98,23 @@ bool Fixed::operator!=(const Fixed &obj) const
 {
 	return this->fixedPoint != obj.fixedPoint;
 }
+
+Fixed Fixed::operator+(const Fixed& obj) const
+{
+	return Fixed(this->toFloat() + obj.toFloat());
+}
+
+Fixed Fixed::operator-(const Fixed& obj) const
+{
+	return Fixed(this->toFloat() - obj.toFloat());
+}
+
+Fixed Fixed::operator*(const Fixed& obj) const
+{
+	return Fixed(this->toFloat() * obj.toFloat());
+}
+
+Fixed Fixed::operator/(const Fixed & obj) const
+{
+	return Fixed(this->toFloat() / obj.toFloat());
+}
