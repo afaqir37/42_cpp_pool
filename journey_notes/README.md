@@ -440,3 +440,12 @@ std::cout << obj2;
 - For example, some function with prototype int fcn() might compile to name __fcn_v, whereas int fcn(int) might compile to name __fcn_i. So while in the source code, two overloaded functions share a name, in compiled code, the names are actually unique.
 
 - There is no standardization on how names should be mangled, so different compilers will produce different mangled names.
+---
+### <ins>IMPORTANT POINT ABOUT CONVERTING FROM FLOATING POINT NUMBER TO FIXED POINT NUMBER</ins>
+- In the context of the conversion operation `fixedPoint = static_cast<int>(roundf(num * (1 << fracBits)));`, the floating-point number `num` is treated as a decimal number, not as its IEEE 754 binary representation.
+
+- When you perform arithmetic operations on floating-point numbers in C++, the numbers are automatically converted from their IEEE 754 binary representation to decimal. The arithmetic operations are then performed on the decimal numbers, and the results are converted back to IEEE 754 binary representation for storage.
+
+- So, when you write `num * (1 << fracBits)`, you're scaling the decimal number `num` by a power of two. This corresponds to shifting the binary point in the binary representation of `num` to the right by `fracBits` positions. 
+
+- The `roundf` function then rounds this number to the nearest integer, and the `static_cast<int>` converts the result to an integer. This integer is the fixed-point representation of the original floating-point number `num`.
