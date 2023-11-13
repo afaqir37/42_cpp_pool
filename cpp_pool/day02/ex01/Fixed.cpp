@@ -10,14 +10,14 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int num)
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "Int constructor called\n";
 	fixedPoint = num << fracBits;
 }
 
 Fixed::Fixed(const float num)
 {
-	std::cout << "Default constructor called\n";
-	fixedPoint = static_cast<int>(std::roundf(num * (1 << fracBits)));
+	std::cout << "Float constructor called\n";
+	fixedPoint = static_cast<int>(roundf(num * (1 << fracBits)));
 }
 
 Fixed::Fixed(const Fixed &other)
@@ -53,7 +53,7 @@ void Fixed::setRawBits(int const raw)
 	fixedPoint = raw;
 }
 
-float Fixed::toFlat(void) const 
+float Fixed::toFloat(void) const 
 {
 	return static_cast<float>(fixedPoint) / (1 << fracBits);
 }
@@ -61,4 +61,10 @@ float Fixed::toFlat(void) const
 int Fixed::toInt(void) const
 {
 	return fixedPoint / (1 << fracBits);
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& t)
+{
+	os << t.toFloat();
+	return os;
 }
