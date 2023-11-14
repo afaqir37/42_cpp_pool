@@ -449,3 +449,27 @@ std::cout << obj2;
 - So, when you write `num * (1 << fracBits)`, you're scaling the decimal number `num` by a power of two. This corresponds to shifting the binary point in the binary representation of `num` to the right by `fracBits` positions. 
 
 - The `roundf` function then rounds this number to the nearest integer, and the `static_cast<int>` converts the result to an integer. This integer is the fixed-point representation of the original floating-point number `num`.
+
+### <ins>You CAN'T bind a non-const lvalue reference to an rvalue in C++<ins>
+- let's take the following senario: 
+```cpp
+int main()
+{
+    int a = 24;
+    int &ref = 99;
+    std::cout << ref << '\n';
+}
+```
+```
+the compiler throws the following error:
+test.cpp:67:16: error: cannot bind non-const lvalue reference of type ‘int&’ to an rvalue of type ‘int’
+   67 |     int &ref = 99;
+      |                ^~
+```
+- the line ```int &ref = 99;``` will cause a compiler error because you're trying to bind a non-const lvalue reference to an rvalue. In C++, you cannot bind a non-const lvalue reference to an rvalue.
+- In this case, ```99``` is an rvalue because it's a temporary object (a literal). You're trying to bind this rivalue to ```ref```, which is a non-const lvalue reference.
+- To fix this, you can make ```ref``` a const lvalue reference:
+```cpp
+const int &ref = 99;
+```
+- This code is valid because you can bind a const lvalue reference to an rvalue in C++. The ```const``` qualifier prevents you from modifying the referred object, which is necessary because rvalues like ```99``` cannot be modified.
