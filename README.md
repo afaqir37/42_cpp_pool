@@ -1097,3 +1097,38 @@ int main(void)
 }
 ```
 - In the above code, s is a pointer to a dynamically array. When the default copy constructor performs a shallow copy,it copies the pointer s, not the actual array that *s* points to. This means that both *obj* and *obj2* end up pointing to the same array. If you modify the array through one object, the change will be visible when you access the array through the other object. Also, if one objet is destroyed and its destructor frees the array, the other object will be left with a dangling pointer.
+
+---
+### <ins>Overloading increment and decrement operators in C++</ins>
+```cpp
+class Test {
+public:
+    int a;
+
+    Test() : a(0) {}
+
+    // Pre-increment overload
+    Test& operator++() {
+        ++a;
+        return *this;
+    }
+
+    // Post-increment overload
+    Test operator++(int) {
+        Test temp = *this;
+        ++(*this);
+        return temp;
+    }
+};
+
+int main() {
+    Test t;
+    ++t; // Pre-increment
+    t++; // Post-increment
+    return 0;
+}
+```
+- In this example, the pre-increment operator(++t) increments t.a and then returns t. The post-increment operator(t++) creates a temporary copy of t, increments t.a, and then returns the temporary copy. This is why the post-increment operator is often considered less efficient than the pref-increment operator.
+**Why post-increment operator overload function takes an *int* paramater?**
+- The *int* parameter in the post-increment operator overload function is a dummy parameter used to differentiate between the pre-increment and post-increment operator overloads. It doesn't have any actual use in the function body, and you don't pass any value to it when you use the post-increment operator.
+- The compiler uses the *int* argument ot distinguish between the prefix and postfix increment operators. For implicit calls, the default value is zero.
