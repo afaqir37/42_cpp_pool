@@ -472,4 +472,4 @@ test.cpp:67:16: error: cannot bind non-const lvalue reference of type ‘int&’
 ```cpp
 const int &ref = 99;
 ```
-- This code is valid because you can bind a const lvalue reference to an rvalue in C++. The ```const``` qualifier prevents you from modifying the referred object, which is necessary because rvalues like ```99``` cannot be modified.
+- This code is valid because you can bind a const lvalue reference to an rvalue in C++. The ```const``` qualifier prevents you from modifying the referred object, which is necessary because rvalues like ```99``` cannot be modified.AD 

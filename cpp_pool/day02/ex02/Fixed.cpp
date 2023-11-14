@@ -53,7 +53,7 @@ void Fixed::setRawBits(int const raw)
 	fixedPoint = raw;
 }
 
-float Fixed::toFloat(void) const 
+float Fixed::toFloat(void) const
 {
 	return static_cast<float>(fixedPoint) / (1 << fracBits);
 }
@@ -63,28 +63,28 @@ int Fixed::toInt(void) const
 	return fixedPoint / (1 << fracBits);
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed& t)
+std::ostream &operator<<(std::ostream &os, const Fixed &t)
 {
 	os << t.toFloat();
 	return os;
 }
 
-bool Fixed::operator>(const Fixed& obj) const
+bool Fixed::operator>(const Fixed &obj) const
 {
 	return this->fixedPoint > obj.fixedPoint;
 }
 
-bool Fixed::operator<(const Fixed& obj) const
+bool Fixed::operator<(const Fixed &obj) const
 {
 	return this->fixedPoint < obj.fixedPoint;
 }
 
-bool Fixed::operator<=(const Fixed& obj) const
+bool Fixed::operator<=(const Fixed &obj) const
 {
 	return this->fixedPoint <= obj.fixedPoint;
 }
 
-bool Fixed::operator>=(const Fixed& obj) const
+bool Fixed::operator>=(const Fixed &obj) const
 {
 	return this->fixedPoint >= obj.fixedPoint;
 }
@@ -99,22 +99,45 @@ bool Fixed::operator!=(const Fixed &obj) const
 	return this->fixedPoint != obj.fixedPoint;
 }
 
-Fixed Fixed::operator+(const Fixed& obj) const
+Fixed Fixed::operator+(const Fixed &obj) const
 {
 	return Fixed(this->toFloat() + obj.toFloat());
 }
 
-Fixed Fixed::operator-(const Fixed& obj) const
+Fixed Fixed::operator-(const Fixed &obj) const
 {
 	return Fixed(this->toFloat() - obj.toFloat());
 }
 
-Fixed Fixed::operator*(const Fixed& obj) const
+Fixed Fixed::operator*(const Fixed &obj) const
 {
 	return Fixed(this->toFloat() * obj.toFloat());
 }
 
-Fixed Fixed::operator/(const Fixed & obj) const
+Fixed Fixed::operator/(const Fixed &obj) const
 {
 	return Fixed(this->toFloat() / obj.toFloat());
+}
+
+Fixed& Fixed::operator++()
+{
+	++fixedPoint;
+	return *this;
+}
+Fixed Fixed::operator++(int)
+{
+	Fixed temp(*this);
+	++fixedPoint;
+	return temp;
+}
+Fixed& Fixed::operator--()
+{
+	--fixedPoint;
+	return *this;
+}
+Fixed Fixed::operator--(int)
+{
+	Fixed temp(*this);
+	--fixedPoint;
+	return temp;
 }
