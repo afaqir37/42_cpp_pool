@@ -472,4 +472,19 @@ test.cpp:67:16: error: cannot bind non-const lvalue reference of type ‘int&’
 ```cpp
 const int &ref = 99;
 ```
-- This code is valid because you can bind a const lvalue reference to an rvalue in C++. The ```const``` qualifier prevents you from modifying the referred object, which is necessary because rvalues like ```99``` cannot be modified.AD 
+- This code is valid because you can bind a const lvalue reference to an rvalue in C++. The ```const``` qualifier prevents you from modifying the referred object, which is necessary because rvalues like ```99``` cannot be modified.
+---
+### <ins>Why Is it important for the *Copy assignment operator* to return a REFERENCE to the object</ins>
+- If the copy assignment operator doesn't return a reference to the object, you won't be able to chain assignment operations.
+```
+For example, if you have:
+Fixed a, b, c;
+// Initialize a, b, and c
+a = b = c; // chaining assignment operations
+``` 
+- This code won't compile if your copy assignment operator doesn't return a reference to ```Fixed```. ```a = b = c``` is equivalent to ```a.operator=(b.operator=(c))```, so the ```b = c``` which is ```b.operator=(c)``` will return ```void```, and you can't assign ```void``` to ```a```.
+- So, while it's technically possible to have a copy assignment operator that doesn't return a reference to the object, it's not recommended because it would limit the usuability of your class and go against the conventions of C++.
+- The standard convention in C++ is for the copy assignment operator to return a reference to the object it's assigning, to allow for assignment chaining.
+#### <ins>In case the copy assignment operator doesn't return a reference, will a = b; still work ? </ins>
+- Answer: Yes, if the copy assignment operator doesn't return a reference, the statement ```a = b;``` will still work. This is because ```a = b;``` doesn't require the result of the assignment operation.
+---
