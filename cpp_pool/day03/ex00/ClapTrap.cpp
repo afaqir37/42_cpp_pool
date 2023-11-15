@@ -4,6 +4,9 @@ ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "constructor called\n";
 	this->name = name;
+	hitPoints = 10;
+	energyPoints = 10;
+	attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(ClapTrap &other)
@@ -54,7 +57,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return ;
 	}
 	hitPoints -= amount;
-	std::cout << "ClapTrap " << name << " takes" << amount << " points of damage\n"; 
+	std::cout << "ClapTrap " << name << " takes " << amount << " points of damage\n"; 
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
