@@ -488,3 +488,22 @@ a = b = c; // chaining assignment operations
 #### <ins>In case the copy assignment operator doesn't return a reference, will a = b; still work ? </ins>
 - Answer: Yes, if the copy assignment operator doesn't return a reference, the statement ```a = b;``` will still work. This is because ```a = b;``` doesn't require the result of the assignment operation.
 ---
+### <ins>Most Vexing Parse in C++</ins>
+- The most vexing parse is a specific form of syntactic ambiguity resolution in the C++ programming language. The term was used by <ins>Scott Meyers in Effective STL</ins>. It is formally defined in section 8.2 of the C++ language standard. It means that whatever that can be interpreted as a function declaration will be interpreted as a function declaration. It also means long minutes sitting in front of a failed compilation trying to figure out what the heck is going on.
+- Take the following example:
+```cpp
+std::string foo();
+```
+- Probably this is the simplest form of the most vexing parse. The unsuspecting coder might think that we just declared a string called food and called its default constructor, so initialized it as an empty string.
+- Then, for example, when we try to call ```empty()``` on it, and we have the following error message (with gcc):
+```
+main.cpp:18:5: error: request for member 'empty' in 'foo', which is of non-class type 'std::string()' {aka 'std::__cxx11::basic_string<char>()'
+
+```
+- What happened is that the above line of code was interpreted as a function declaration. We just declared a function called foo, taking no parameeters and returning a string. Whereas we only wanted to call the default constructor.
+- This can give a kind of headache to debug eve nif you know about the most vexing parse. Mostly because you see the compiler error on a different line, not where you declared your (variable) function, but where you try to use it.
+- This can be fixed very easily. You don't need to use parentheses at all to declare a variable calling its default constructor. But since C++11, if you want you can also use the {}- initialization. Both examples are going to work just fine:
+```cpp
+std::string foo;
+std::string bar{};
+```

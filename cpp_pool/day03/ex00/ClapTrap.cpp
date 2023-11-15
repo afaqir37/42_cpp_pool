@@ -1,3 +1,11 @@
 #include "ClapTrap.hpp"
 
-void 
+ClapTrap::ClapTrap(std::string name)
+{
+	this->name = name;
+}
+
+ClapTrap::ClapTrap(ClapTrap &other)
+{
+	
+}
