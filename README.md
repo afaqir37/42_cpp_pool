@@ -1132,3 +1132,211 @@ int main() {
 **Why post-increment operator overload function takes an *int* paramater?**
 - The *int* parameter in the post-increment operator overload function is a dummy parameter used to differentiate between the pre-increment and post-increment operator overloads. It doesn't have any actual use in the function body, and you don't pass any value to it when you use the post-increment operator.
 - The compiler uses the *int* argument ot distinguish between the prefix and postfix increment operators. For implicit calls, the default value is zero.
+---
+### <ins>Constructors and Destructors in C++</ins>
+- The process of creating and deleting objects in C++ is not a trivial task. Every time an instance of a class is created the constructor method is called. The constructor has the same name as the class and it doesn't return any type, while the destructor's name it's defined in the same way, but with a '~' in front.
+- Even if a class is not equipped with a  constructor, the compiler will generate code for one, called the implicit default constructor. This will typically call the default constructors for all class members.
+- THe construction order of the members is the order in which they are defined, and for this reason the same order should be preserved in the initialization list to avoid confusion.
+- Some problems arise when we are dealing with class hierarchies. Let's take a look at the following example where class ```child``` is inherited from class ```test``` :
+```cpp
+#include <iostream>
+
+class test {
+public:
+    int a;
+    test(int value) : a(value) {}
+   virtual ~test() {
+        std::cout << "test destructor called\n";
+    }
+};
+
+class child : public test {
+public:
+    int b; 
+    child(int value) : b(value) { }
+    ~child() {
+        std::cout << "child destructor called\n";
+    }
+};
+
+int main()
+{
+    child obj(42);
+}
+```
+- When we create an object of type ```child```, the ```test``` part of the ```child``` object must be initialized and since we provide a constructor for class ```test```, the compiler will not create an implicit default constructor. This code will fail to compile because there is no default constructor for class ```test``` to be called. To fix this we could provide a default constructor in class ```test``` or expilicty call the existing constructor of ```test``` in the initialization list of the ```child```'s constructor:
+```cpp
+class child : public test {
+public:
+    int b; 
+    child(int value) : b(value), test(42) { } // test constructor added
+    ~child() {
+        std::cout << "child destructor called\n";
+    }
+};
+```
+- Notice that we needed to call the constructor of ```test``` before doing any initialization in ```child```, since the order of construction starts with the base class and ends with the most derived class. For example, the following code also will fail to compile:
+```cpp
+class child : public test {
+public:
+    int b; 
+    child(int value) : b(value) { 
+        test(42);
+        } // test constructor added
+    ~child() {
+        std::cout << "child destructor called\n";
+    }
+};
+```
+- this is because you can't initialize the child object before initializing the test object.
+
+### <ins>Virtual Destructors</ins>
+- To build an object the constructor must be of the same type a the object and because of this a constructor cannot be a virtual function.
+- Constructor is a special member function of a class that is used to intialize objects of its class type. When a constructor is called, it has to construct an object of a specific type, so there's no need for the dynamic dispatch provided by virtual functions.
+- But the same thing does not apply to destructors. A destructor can be defined as virtual or even pure virtual. You would use a virtual destructor if you ever expect a derived class to be destroyed through a pointer to the base class. This will ensure that the destructor of the most derived classes will get called.
+---
+**<ins>Virtual Inheritance</ins>**
+- in C++, a clas can inherit from multiple classes which is commonly referred as multiple inheritance. But this can cause problems sometimes, as you can have multiple instances of the base class.
+- To tackle this problem, C++ uses a technique whicih ensures only one instance of a base class is present. That technique is referred as virtual inheritance.
+**Example of When Virtual Inheritance is Useful**
+- Let's look at an example and then explain what's happening:
+```cpp
+#include <iostream>
+
+class parent {
+public:
+    int a;
+    parent() : a(42) {}
+};
+
+class child1 : public parent {
+public: 
+    int b;
+    child1() : b(1) {}
+};
+
+class child2 : public parent {
+public:
+    int c;
+    child2() : c(2) {}
+};
+
+class child3 : public child1, public child2 {
+public:
+    int d;
+    child3() : d(3) {}
+};
+
+int main()
+{
+    child3 obj;
+    std::cout << obj.a << '\n';
+}
+```
+- First, we have a class ```parent``` which is being inherited by two class ```child1``` and ```chil2```. Both of these classes are then inherited by another class ```child3```.
+- Inside our main function, we create a new instance (object) of the class ```child3```. We then simply tried to print the value of a to the console.
+- It might look to access the value of ```a``` here, because class ```child3``` is inherited from both class ```child1``` and ```child2``` which are ultimately inherited from the class ```parent```.
+- But when you try to compile the above progra, you get the following error: 
+```
+test.cpp: In function ‘int main()’:
+test.cpp:30:22: error: request for member ‘a’ is ambiguous
+   30 |     std::cout << obj.a << '\n';
+      |                      ^
+test.cpp:5:9: note: candidates are: ‘int parent::a’
+    5 |     int a;
+      |         ^
+test.cpp:5:9: note:                 ‘int parent::a’
+```
+- The error is pretty clear: ```error: request for member 'a' is ambiguous```, if we draw the hierarchical class structure, it should become pretty clear:
+```
+        parent              parent
+          |                   |
+          |                   |
+        child1              child2
+            \                 /
+             \               /
+              \             /
+                   child3
+```
+- We can see that we have multiple instances of the class ```parent```. So the request to the variable ```a``` becomes ambiguous because the compiler doesn't know which instance we are referring to - is it through ```child1``` or through ```child2```? That's the real problem.
+**One Way to Solve this Problem**
+- One way to tackle the problem is to use the ```scope-resolution operator (::)``` with which we can directly specify which instance of ```parent``` we want.
+```cpp
+int main()
+{
+    child3 obj;
+    std::cout << obj.child1::a << '\n';
+}
+```
+- Using the ```scope-resolution operator``` we explicity told the compiler which instance of ```parent``` we referred to.
+- The main problem with this approach is that it doesn't solve our problem - because our main probelm is having multiple instancesof class ```parent```, and we still have that. SO we need to look around for some other solutions.
+
+**Another way to solve this issue: Virtual Inheritance**
+- To inherit virtually we simply add a keyword ```virtual``` before our base class name in the derived class declaration like this:
+```cpp
+class child1 : virtual public parent {
+public: 
+    int b;
+    child1() : b(1) {}
+};
+
+class child2 : virtual public parent {
+public:
+    int c;
+    child2() : c(2) {}
+};
+```
+- The addition of the ```virtual``` keyword indicates that we want to inherit from ```parent``` virtually.
+- Inheriting virtually guarantees that there will be only one isntance of the base class among the derived classes that virtually inherited it. After the changes, our hierarchical class structure becomes:
+
+```
+            parent
+              |
+              /\
+             /  \
+            /    \
+           /      \
+          /        \
+         /          \
+       child1      child2
+         |           |
+          \         /
+           \       /
+             child3    
+
+```
+- So now if we try to compile the following code, it will successfully compile:
+```cpp
+#include <iostream>
+
+class parent {
+public:
+    int a;
+    parent() : a(42) {}
+};
+
+class child1 : virtual public parent {
+public: 
+    int b;
+    child1() : b(1) {}
+};
+
+class child2 : virtual public parent {
+public:
+    int c;
+    child2() : c(2) {}
+};
+
+class child3 : public child1, public child2 {
+public:
+    int d;
+    child3() : d(3) {}
+};
+
+int main()
+{
+    child3 obj;
+    std::cout << obj.a << '\n';
+}
+```
+- So with the introduction of ```virtual``` inheritance we are able to remove the ambiguities we had earlier.
