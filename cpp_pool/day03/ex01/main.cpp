@@ -1,4 +1,4 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
@@ -9,6 +9,13 @@ int main()
 	wallE.beRepaired(10);
 	wallE.takeDamage(10);
 	wallE.takeDamage(10);
+
+	ScavTrap player("pixel");
+	player.attack("walle");
+	player.takeDamage(32);
+	player.takeDamage(90);
+	player.guardGate();
+
 
 
 }

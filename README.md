@@ -1258,7 +1258,7 @@ test.cpp:5:9: note:                 ‘int parent::a’
               \             /
                    child3
 ```
-- We can see that we have multiple instances of the class ```parent```. So the request to the variable ```a``` becomes ambiguous because the compiler doesn't know which instance we are referring to - is it through ```child1``` or through ```child2```? That's the real problem.
+- We can see that we have multiple instances of the class ```parent```. So the request to the variable ```a``` becomes ambiguous because the compiler doesn't know which instance we are referring to - is it through ```child1``` or through ```child2```? That's the real problem.<br>
 **One Way to Solve this Problem**
 - One way to tackle the problem is to use the ```scope-resolution operator (::)``` with which we can directly specify which instance of ```parent``` we want.
 ```cpp
@@ -1291,7 +1291,7 @@ public:
 
 ```
             parent
-              |
+               |
               /\
              /  \
             /    \
