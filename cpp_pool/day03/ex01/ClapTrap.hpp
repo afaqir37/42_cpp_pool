@@ -2,7 +2,7 @@
 #define _CLAPTRAP_HPP_
 #include <iostream>
 class ClapTrap {
-private:
+protected:
 	std::string name;
 	int hitPoints;
 	int energyPoints;

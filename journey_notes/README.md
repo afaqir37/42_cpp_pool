@@ -507,3 +507,89 @@ main.cpp:18:5: error: request for member 'empty' in 'foo', which is of non-class
 std::string foo;
 std::string bar{};
 ```
+---
+### <ins>You can pass an object as argument to a function without creating it outside of the function</ins>
+**Example**
+```cpp
+#include <iostream>
+
+class point2D {
+
+    public:        
+        int a;
+        int b;
+        point2D(int a, int b) : a(a), b(b) {
+            std::cout << "object created\n";
+        }
+        point2D() {
+            std::cout << "default constructor called\n";
+        }
+};
+
+void display(const point2D& obj)
+{
+    std::cout << obj.a << " " << obj.b << '\n';
+}
+
+
+int main()
+
+{
+    display({}); // will print garbage value for both 'a' and 'b'
+    display({42, -42}); // will call the parameterized constructor 
+}
+```
+```
+output:
+default constructor called
+-197636560 32764
+object created
+42 -42
+```
+---
+### <ins>What if you want to initialize a base's data member inside the child's constructor since child class is inherited from base class ?</ins>
+
+- Let's take the two following classes :
+```cpp
+class base {
+    public:
+        int a;
+        base (int a = 9) : a(a) {}
+};
+
+class child : public base {
+    public:
+        int b;
+        child(int a, int b) : a(a), b(b) {}
+};
+```
+- The idea is we want to initialize the data member ```a``` from the base class inside the ```child``` class's constructor, since *logically* the ```child``` class inherit the data members of ```base``` class. the following code fails to compile:
+```cpp
+#include <iostream>
+
+class base {
+    public:
+        int a;
+        base (int a = 9) : a(a) {}
+};
+
+class child : public base {
+    public:
+        int b;
+        child(int a, int b) : a(a), b(b) {}
+};
+
+int main()
+{
+    child obj(5, 6);
+    std::cout << obj.a << " " << obj.b << '\n';
+}
+```
+```
+output:
+test.cpp:12:31: error: class ‘child’ does not have any field named ‘a’
+   12 |         child(int a, int b) : a(a), b(b) {}
+      |  
+```
+- However, C++ prevents classes from initializing inherited member variables in the member initializer list of a constructor. In other words, the value of a member variable can only be set in a member initializer list of a constructor belonging to the same class as the variable.
+- Why does C++ do this? The answer has to do with const and reference variables. Consider what would happen if m_id were const. Because const variables must be initialized with a value at the time of creation, the base class constructor must set its value when the variable is created. However, when the base class constructor finishes, the derived class constructor’s member initializer lists are then executed. Each derived class would then have the opportunity to initialize that variable, potentially changing its value! By restricting the initialization of variables to the constructor of the class those variables belong to, C++ ensures that all variables are initialized only once.

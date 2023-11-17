@@ -3,12 +3,6 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap {
-private:
-	std::string name;
-	int hitPoints;
-	int energyPoints;
-	int attackDamage;
-
 public:
     ScavTrap(std::string name);
     ScavTrap(ScavTrap& other);
