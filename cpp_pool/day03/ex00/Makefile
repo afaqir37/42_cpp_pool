@@ -6,8 +6,11 @@ NAME = main
 
 all: $(NAME)
 
-$(NAME): $(OBJ) ClapTrap.hpp
+$(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+ClapTrap.o: ClapTrap.cpp ClapTrap.hpp
+main.o: main.cpp ClapTrap.hpp
 
 clean:
 	rm -rf $(OBJ)

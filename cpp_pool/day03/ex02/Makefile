@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = ClapTrap.cpp main.cpp ScavTrap.cpp
+SRC = ClapTrap.cpp main.cpp ScavTrap.cpp FragTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = main
 
@@ -11,7 +11,8 @@ $(NAME): $(OBJ)
 
 ClapTrap.o: ClapTrap.cpp ClapTrap.hpp
 ScavTrap.o: ScavTrap.cpp ScavTrap.hpp ClapTrap.hpp
-main.o: main.cpp ClapTrap.hpp ScavTrap.hpp
+FragTrap.o: FragTrap.cpp FragTrap.hpp ClapTrap.hpp
+main.o: main.cpp ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 clean:
 	rm -rf $(OBJ)

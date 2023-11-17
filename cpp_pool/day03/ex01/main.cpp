@@ -5,10 +5,13 @@ int main()
 	ClapTrap wallE("walle");
 
 	wallE.attack("cyborg");
+	wallE.beRepaired(1);
 	wallE.takeDamage(10);
-	wallE.beRepaired(10);
-	wallE.takeDamage(10);
-	wallE.takeDamage(10);
+	wallE.attack("d");
+	wallE.takeDamage(4);
+	
+
+	std::cout << "----------\n";
 
 	ScavTrap player("pixel");
 	player.attack("walle");
@@ -16,9 +19,11 @@ int main()
 	player.takeDamage(90);
 	player.guardGate();
 
-	// ClapTrap *ptr = new ScavTrap("pixel");
-	// ptr->attack("suzan");
-	// delete ptr;
+	std::cout << "----------\n";
+
+	ClapTrap *ptr = new ScavTrap("pixel");
+	ptr->attack("suzan");
+	delete ptr;
 
 
 }
