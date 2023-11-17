@@ -53,21 +53,21 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << name << " is defeated :/\n";
+		std::cout << name << " is defeated :/\n";
 		return ;
 	}
 	hitPoints -= amount;
-	std::cout << "ClapTrap " << name << " takes " << amount << " points of damage\n"; 
+	std::cout << name << " takes " << amount << " points of damage\n"; 
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << name << " is out of energy Points :/\n";
+		std::cout << name << " is out of energy Points :/\n";
 		return ;
 	}
 	hitPoints += amount;
 	energyPoints -= 1;
-	std::cout << "ClapTrap " << name << " repaired itself by " << amount << " hit points\n";
+	std::cout << name << " repaired itself by " << amount << " hit points\n";
 }

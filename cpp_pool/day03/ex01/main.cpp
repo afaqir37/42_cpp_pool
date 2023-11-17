@@ -16,6 +16,9 @@ int main()
 	player.takeDamage(90);
 	player.guardGate();
 
+	// ClapTrap *ptr = new ScavTrap("pixel");
+	// ptr->attack("suzan");
+	// delete ptr;
 
 
 }
