@@ -17,12 +17,13 @@ Dog& Dog::operator=(const Dog& other) {
         type = other.type;
     }
     return *this;
+
 }
 
 Dog::~Dog() {
     std::cout << "Dog destructor called\n";
 }
 
-void Dog::makeSound(void)  {
+void Dog::makeSound(void) const{
     std::cout << "Dog sound: wouaff\n";
 }

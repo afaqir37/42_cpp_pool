@@ -1340,3 +1340,8 @@ int main()
 }
 ```
 - So with the introduction of ```virtual``` inheritance we are able to remove the ambiguities we had earlier.
+---
+### <ins>What is a VTABLE</ins>
+- A vtable is basically the most common implementation of polymorphism in C++. When vtables are used, every polymorphic class has a vtable somewhere in the program; you can think of it as a (hidden) static data member of the class. Every object of a polymorphic class is associated with the vtable for its most-derived class. By checking this association, the program can work its polymorphic magic. Important caveat: a vtable is an implementation detail. It is not mandated by the C++ standard, even though most (all?) C++ compilers use vtables to implement polymorphic behavior.
+- The name "vtable" comes from "virtual function table". It is a table that stores pointers to (virtual) functions. A compiler chooses its convention for how the table is laid out; a simple approach is to go through the virtual functions in the order they are declared within class definitions. When a virtual function is called, the program follows the object's pointer to a vtable, goes to the entry associated with the desired function, then uses the stored function pointer to invoke the correct function.
+

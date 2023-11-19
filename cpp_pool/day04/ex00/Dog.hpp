@@ -9,7 +9,7 @@ class Dog : public Animal {
         Dog& operator=(const Dog& other);
         ~Dog();
 
-        void makeSound(void) ;
+        void makeSound(void) const;
 };
 
 #endif

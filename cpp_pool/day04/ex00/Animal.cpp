@@ -19,11 +19,11 @@ Animal& Animal::operator=(const Animal& other) {
     return *this;
 }
 
-Animal::~Animal() {
+ Animal::~Animal() {
     std::cout << "Animal destructor called\n";
 }
 
-void Animal::makeSound(void)  {
+ void Animal:: makeSound(void) const{
     std::cout << "each animal has a specific sound\n";
 }
 
