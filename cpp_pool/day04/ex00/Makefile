@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = Animal.cpp Cat.cpp Dog.cpp main.cpp
+SRC = Animal.cpp Cat.cpp Dog.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = main
 
@@ -12,7 +12,9 @@ $(NAME): $(OBJ)
 Animal.o: Animal.cpp Animal.hpp
 Cat.o: Cat.cpp Cat.hpp
 Dog.o: Dog.cpp Dog.hpp
-main.o: main.cpp Animal.hpp Cat.hpp Dog.hpp
+WrongAnimal.o: WrongAnimal.cpp WrongAnimal.hpp
+WrongCat.o: WrongCat.cpp WrongCat.hpp
+main.o: main.cpp Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 
 clean:
 	rm -rf $(OBJ)
