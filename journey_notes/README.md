@@ -593,3 +593,17 @@ test.cpp:12:31: error: class ‘child’ does not have any field named ‘a’
 ```
 - However, C++ prevents classes from initializing inherited member variables in the member initializer list of a constructor. In other words, the value of a member variable can only be set in a member initializer list of a constructor belonging to the same class as the variable.
 - Why does C++ do this? The answer has to do with const and reference variables. Consider what would happen if m_id were const. Because const variables must be initialized with a value at the time of creation, the base class constructor must set its value when the variable is created. However, when the base class constructor finishes, the derived class constructor’s member initializer lists are then executed. Each derived class would then have the opportunity to initialize that variable, potentially changing its value! By restricting the initialization of variables to the constructor of the class those variables belong to, C++ ensures that all variables are initialized only once.
+---
+#### <ins>If we allocate memory in the heap for child class object, does the base object of the child object get allocated in the heap also ?</ins>
+- Yes, when you allocate memory on the heap for an object of a derived class, the memory for the entire object, including the base class part, is allocated on the heap.
+
+When a derived class object is created, it includes within it a subobject for each base class it has. So, in your case, a `child` object includes a `base` subobject. If you allocate a `child` object on the heap, the `base` subobject is part of that heap allocation.
+
+Here's an example of how you can allocate a `child` object on the heap:
+
+```cpp
+child* ptr = new child(10);
+```
+
+In this code, `new child(10)` allocates memory on the heap for a `child` object and calls the `child` constructor. The `base` constructor is called as part of the `child` constructor, so the `base` subobject is constructed in the same heap allocation. The `new` expression returns a pointer to the `child` object, which is stored in `ptr`.
+---
