@@ -1351,12 +1351,8 @@ int main()
 - What virtual does is to give you polymorphism, that is, the ability to select at run-time the most-derived override of a method.
 - When a pure virtual method exists, the class is "abstract" and can not be instantiated on its own. Instead, a derived class that implements the pure-virtual method(s) must be used. A pure-virtual isn't defined in the base-class at all, so a derived class must define it, or that derived class is also abstract, and can not be instantiated. Only a class that has no abstract methods can be instantiated.
 - Pure Virtual Functions are mostly used to define:<br>
- 1. abstract classes
-
- These are base classes where you have to derive from them and then implement the pure virtual functions.
- 2. interfaces
-
- These are 'empty' classes where all functions are pure virtual and hence you have to derive and then implement all of the functions.
+* abstract classes : These are base classes where you have to derive from them and then implement the pure virtual functions.<br>
+* interfaces : These are 'empty' classes where all functions are pure virtual and hence you have to derive and then implement all of the functions.
 
 
 
