@@ -1344,6 +1344,22 @@ int main()
 ### <ins>What is a VTABLE</ins>
 - A vtable is basically the most common implementation of polymorphism in C++. When vtables are used, every polymorphic class has a vtable somewhere in the program; you can think of it as a (hidden) static data member of the class. Every object of a polymorphic class is associated with the vtable for its most-derived class. By checking this association, the program can work its polymorphic magic. Important caveat: a vtable is an implementation detail. It is not mandated by the C++ standard, even though most (all?) C++ compilers use vtables to implement polymorphic behavior.
 - The name "vtable" comes from "virtual function table". It is a table that stores pointers to (virtual) functions. A compiler chooses its convention for how the table is laid out; a simple approach is to go through the virtual functions in the order they are declared within class definitions. When a virtual function is called, the program follows the object's pointer to a vtable, goes to the entry associated with the desired function, then uses the stored function pointer to invoke the correct function.
+
+##### <ins>Virtual and Pure Virtual Functions in C++</ins>
+- Unlike a non-virtual function, when a virtual function is overridden the most-derived version is used at all levels of the class hierarchy, rather than just the level at which it was created. Therefore if one method of the base class calls a virtual method, the version defined in the derived class will be used instead of the version defined in the base class.
+- This is in contrast to non-virtual functions, which can still be overridden in a derived class, but the "new" version will only be used by the derived class and below, but will not change the functionality of the base class at all.
+- What virtual does is to give you polymorphism, that is, the ability to select at run-time the most-derived override of a method.
+- When a pure virtual method exists, the class is "abstract" and can not be instantiated on its own. Instead, a derived class that implements the pure-virtual method(s) must be used. A pure-virtual isn't defined in the base-class at all, so a derived class must define it, or that derived class is also abstract, and can not be instantiated. Only a class that has no abstract methods can be instantiated.
+- Pure Virtual Functions are mostly used to define:<br>
+<br>
+a- abstract classes<br>
+    * These are base classes where you have to derive from them and then implement the pure virtual functions.
+b- interfaces<br>
+    * These are 'empty' classes where all functions are pure virtual and hence you have to derive and then implement all of the functions.
+
+
+
+
 ---
 ### <ins>Const member function in C++</ins>
 - Constant member functions are those functions that are denied permission to change the values of the data members of their class. To make a member function constant, the keyword const is appended to the function prototype and also to the function definition header.
