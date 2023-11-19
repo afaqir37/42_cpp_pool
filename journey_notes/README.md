@@ -500,8 +500,8 @@ std::string foo();
 main.cpp:18:5: error: request for member 'empty' in 'foo', which is of non-class type 'std::string()' {aka 'std::__cxx11::basic_string<char>()'
 
 ```
-- What happened is that the above line of code was interpreted as a function declaration. We just declared a function called foo, taking no parameeters and returning a string. Whereas we only wanted to call the default constructor.
-- This can give a kind of headache to debug eve nif you know about the most vexing parse. Mostly because you see the compiler error on a different line, not where you declared your (variable) function, but where you try to use it.
+- What happened is that the above line of code was interpreted as a function declaration. We just declared a function called foo, taking no parameters and returning a string. Whereas we only wanted to call the default constructor.
+- This can give a kind of headache to debug even if you know about the most vexing parse. Mostly because you see the compiler error on a different line, not where you declared your (variable) function, but where you try to use it.
 - This can be fixed very easily. You don't need to use parentheses at all to declare a variable calling its default constructor. But since C++11, if you want you can also use the {}- initialization. Both examples are going to work just fine:
 ```cpp
 std::string foo;

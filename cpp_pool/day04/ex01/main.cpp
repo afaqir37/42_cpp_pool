@@ -10,28 +10,35 @@ int main()
   // delete i;
   // return 0;
 
-  // Animal* obj[4];
+  Animal* obj[4];
 
-  // for (int i = 0; i < 2; i++)
-  //   obj[i] = new Cat();
+  for (int i = 0; i < 2; i++)
+    obj[i] = new Cat();
 
-  // for (int i = 2; i < 4; i++)
-  //   obj[i] = new Dog();
+  for (int i = 2; i < 4; i++)
+    obj[i] = new Dog();
 
-  // for (int i = 0; i < 4; i++)
-  //   delete obj[i];
+  for (int i = 0; i < 4; i++)
+    delete obj[i];
 
   // test for deep copy:
-  Cat obj();
-  obj.setter(0, "manyouka");
+  // Cat obj;
+  // obj.setter(0, "obj + obj + obj");
+  
+  // std::cout << "ideas of obj: \n";
+  // obj.getter();
+  
+  // Cat anotherObj;
+  // anotherObj = obj;
+  // anotherObj.setter(0, "anotherObj + anotherObj + anotherObj");
 
-  Cat anotherObj();
-  anotherObj.setter(0, "wa rah tnakt");
 
-  std::cout << "ideas of obj: \n";
-  obj.getter();
-  std::cout << "ideas of anotherObj: \n";
-  anotherObj.getter();
+  // std::cout << "re-check obj's ideas: \n";
+  // obj.getter();
+  // std::cout << "check anotherObj ideas: \n";
+  // anotherObj.getter();
+
+
 
 
 }

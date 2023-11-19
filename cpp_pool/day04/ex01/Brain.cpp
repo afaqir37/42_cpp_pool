@@ -30,7 +30,7 @@ void Brain::getIdeas(void) {
 }
 
 void Brain::setIdeas(int index, std::string str) {
-    if (index <= 0 || index >= 100)
+    if (index < 0 || index >= 100)
         std::cout << "Please enter a valid index\n";
     else
         ideas[index] = str;
