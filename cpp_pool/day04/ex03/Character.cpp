@@ -3,15 +3,17 @@
 Character::Character(std::string name) {
     std::cout << "Character constructor called\n";
     this->name = name;
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++) {
         slot[i] = NULL;
+        pool[i] = NULL;
+    }
 }
 
 Character::Character(Character& other) : ICharacter(other) {
     std::cout << "Character copy constructor called\n";
     this->name = name;
     for (int i = 0; i < 4; i++)
-        slot[i] = other.slot[i] ? other.slot[i]->clone() : NULL:
+        slot[i] = other.slot[i] ? other.slot[i]->clone() : NULL;
 }
 
 Character& Character::operator=(const Character& other) {
@@ -50,5 +52,8 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
+    if (idx >= 0 && idx < 4 && slot[idx])
+    {
 
+    }
 }

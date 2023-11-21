@@ -1,4 +1,4 @@
-#ifnded _CHARACTER_HPP_
+#ifndef _CHARACTER_HPP_
 #define _CHARACTER_HPP_
 #include "ICharacter.hpp"
 
@@ -6,6 +6,7 @@ class Character : public ICharacter {
 private:
     std::string name;
     AMateria* slot[4];
+    AMateria* pool[4];
 public:
     Character(std::string name);
     Character(Character& other);
