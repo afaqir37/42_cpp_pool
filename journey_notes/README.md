@@ -607,3 +607,6 @@ child* ptr = new child(10);
 
 In this code, `new child(10)` allocates memory on the heap for a `child` object and calls the `child` constructor. The `base` constructor is called as part of the `child` constructor, so the `base` subobject is constructed in the same heap allocation. The `new` expression returns a pointer to the `child` object, which is stored in `ptr`.
 ---
+### <ins>Is it safe to delete a NULL pointer?</ins>
+- ```delete``` performs the check anyway, so checking it on your side adds overhead and looks uglier. A very good practice is setting the pointer to NULL after delete (helps avoiding double deletion and other similar memory corruption problems). SO,  in C++, it's safe to delete a null pointer.
+

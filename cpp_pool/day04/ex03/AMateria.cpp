@@ -14,7 +14,7 @@ AMateria::AMateria(AMateria& other) {
     this->type = other.type;
 }
 
-AMAteria& AMateria::operator=(const AMateria& other) {
+AMateria& AMateria::operator=(const AMateria& other) {
     std::cout << "AMAteria copy assignment operator called\n";
     if (this != &other)
     {
@@ -23,16 +23,12 @@ AMAteria& AMateria::operator=(const AMateria& other) {
     return *this;
 }
 
-AMAteria::~AMateria() {
+AMateria::~AMateria() {
     std::cout << "AMateria destructor called\n";
 }
 
 std::string const & AMateria::getType() const {
     return type;
 }
-
-// AMateria* AMateria::clone() const {
-//     return AMateria(*this);
-// }
 
 void AMateria::use(ICharacter& target) { }
