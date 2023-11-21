@@ -5,7 +5,6 @@
 class Character : public ICharacter {
 private:
     std::string name;
-    std::string actionToExecute;
     AMateria* slot[4];
 public:
     Character(std::string name);
@@ -18,8 +17,7 @@ public:
     void unequip(int idx);
     void use(int idx, ICharacter& target);
 
-    void setAction(std::string & action);
-    std::string& getAction(void);
+
 };
 
 #endif

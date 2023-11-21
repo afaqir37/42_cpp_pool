@@ -31,15 +31,8 @@ std::string const & AMateria::getType() const {
     return type;
 }
 
-AMateria* AMateria::clone() const {
-    return AMateria(*this);
-}
+// AMateria* AMateria::clone() const {
+//     return AMateria(*this);
+// }
 
-void AMateria::use(ICharacter& target) {
-    If (target.getAction() == "ice")
-        std::cout << "* shoots an ice bolt at " << target.getName()<< " *" << '\n';
-    else if (target.getAction() == "cure")
-        std::cout << "* heals " << target.getName() << "’s wounds *" << '\n';
-    else
-        std::cout << "invalid materia\n";
-}
+void AMateria::use(ICharacter& target) { }
