@@ -1,4 +1,4 @@
-#ifnded _LINKED_LIST_HPP_
+#ifndef _LINKED_LIST_HPP_
 #define _LINKED_LIST_HPP_
 #include <iostream>
 #include "AMateria.hpp"

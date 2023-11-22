@@ -467,10 +467,10 @@ test.cpp:67:16: error: cannot bind non-const lvalue reference of type ‘int&’
       |                ^~
 ```
 - the line ```int &ref = 99;``` will cause a compiler error because you're trying to bind a non-const lvalue reference to an rvalue. In C++, you cannot bind a non-const lvalue reference to an rvalue.
-- In this case, ```99``` is an rvalue because it's a temporary object (a literal). You're trying to bind this rivalue to ```ref```, which is a non-const lvalue reference.
+- In this case, ```99``` is an rvalue because it's a temporary object (a literal). You're trying to bind this rvalue to ```ref```, which is a non-const lvalue reference.
 - To fix this, you can make ```ref``` a const lvalue reference:
 ```cpp
-const int &ref = 99;
+const int &ref = 99; f
 ```
 - This code is valid because you can bind a const lvalue reference to an rvalue in C++. The ```const``` qualifier prevents you from modifying the referred object, which is necessary because rvalues like ```99``` cannot be modified.
 ---
