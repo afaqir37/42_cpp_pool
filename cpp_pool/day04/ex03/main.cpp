@@ -3,6 +3,7 @@
 #include "MateriaSource.hpp"
 #include "LinkedList.hpp"
 #include "Character.hpp"
+
 int main()
 {
 IMateriaSource* src = new MateriaSource();
@@ -12,8 +13,6 @@ ICharacter* me = new Character("me");
 AMateria* tmp;
 tmp = src->createMateria("ice");
 me->equip(tmp);
-me->unequip(0);
-me->unequip(0);
 tmp = src->createMateria("cure");
 me->equip(tmp);
 ICharacter* bob = new Character("bob");

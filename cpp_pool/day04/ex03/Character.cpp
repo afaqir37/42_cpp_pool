@@ -52,7 +52,8 @@ void Character::equip(AMateria* m) {
             slot[i] = m;
             break;
         }
-
+    if (!list.contains(m))
+        list.add(m);
 }
 
 void Character::unequip(int idx) {
