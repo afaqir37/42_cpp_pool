@@ -1,17 +1,15 @@
 #include "Ice.hpp"
+#include "ICharacter.hpp"
 
 Ice::Ice() {
-	std::cout << "Ice constructor called\n";
 	type = "ice";
 }
 
-Ice::Ice(Ice& other) {
-	std::cout << "Ice copy constructor called\n";
+Ice::Ice(const Ice& other) {
 	type = other.type;
 }
 
 Ice& Ice::operator=(const Ice& other) {
-	std::cout << "Ice copy assignment operator called\n";
 	if (this != &other)
 	{
 		type = other.type;
@@ -20,7 +18,6 @@ Ice& Ice::operator=(const Ice& other) {
 }
 
 Ice::~Ice() {
-	std::cout << "Ice destructor called\n";
 }
 
 AMateria* Ice::clone() const {
@@ -28,5 +25,5 @@ AMateria* Ice::clone() const {
 }
 
 void Ice::use(ICharacter& target) {
-	std::cout << "* shoots an ice bolt at " << type << " *\n";
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
 }

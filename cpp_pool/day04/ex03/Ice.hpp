@@ -5,7 +5,7 @@
 class Ice : public AMateria {
 public:
     Ice();
-    Ice(Ice& other);
+    Ice(const Ice& other);
     Ice& operator=(const Ice& other);
     ~Ice();
 

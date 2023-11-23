@@ -1,7 +1,8 @@
 #ifndef _AMATERIA_HPP_
 #define _AMATERIA_HPP_
-#include "Character.hpp"
 #include <iostream>
+
+class ICharacter;
 
 class AMateria {
 protected:

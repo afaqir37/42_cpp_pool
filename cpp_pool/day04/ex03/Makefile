@@ -1,7 +1,7 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp \
-	LinkedList.cpp Node.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+SRC =  AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp \
+	LinkedList.cpp Node.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = main
 

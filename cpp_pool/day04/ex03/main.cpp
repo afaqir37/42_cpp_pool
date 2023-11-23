@@ -2,22 +2,25 @@
 #include "Cure.hpp"
 #include "MateriaSource.hpp"
 #include "LinkedList.hpp"
-
+#include "Character.hpp"
 int main()
 {
-	LinkedList list;
-	AMateria* obj = new Ice();
-	list.add(obj);
-	obj = new Cure();
-	list.add(obj);
-	obj = new Ice();
-	list.add(obj);
-
-
-	Node* tmp = list.head;
-	while (tmp)
-	{
-		std::cout << tmp->object->getType();
-		tmp = tmp->next;
-	}
+IMateriaSource* src = new MateriaSource();
+src->learnMateria(new Ice());
+src->learnMateria(new Cure());
+ICharacter* me = new Character("me");
+AMateria* tmp;
+tmp = src->createMateria("ice");
+me->equip(tmp);
+me->unequip(0);
+me->unequip(0);
+tmp = src->createMateria("cure");
+me->equip(tmp);
+ICharacter* bob = new Character("bob");
+me->use(0, *bob);
+me->use(1, *bob);
+delete bob;
+delete me;
+delete src;
+return 0;
 }

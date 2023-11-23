@@ -1,12 +1,16 @@
 #ifndef _CHARACTER_HPP_
 #define _CHARACTER_HPP_
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
+#include "LinkedList.hpp"
+
 
 class Character : public ICharacter {
 private:
     std::string name;
     AMateria* slot[4];
-    AMateria* pool[4];
+    LinkedList list;    
+
 public:
     Character(std::string name);
     Character(Character& other);
@@ -18,6 +22,8 @@ public:
     void unequip(int idx);
     void use(int idx, ICharacter& target);
 
+    
+    int doesItExist(AMateria* obj);
 
 };
 

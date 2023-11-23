@@ -5,7 +5,7 @@
 class Cure : public AMateria {
 public:
     Cure();
-    Cure(Cure& other);
+    Cure(const Cure& other);
     Cure& operator=(const Cure& other);
     ~Cure();
 

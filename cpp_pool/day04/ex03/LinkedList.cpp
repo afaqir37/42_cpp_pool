@@ -64,3 +64,24 @@ void LinkedList::add(AMateria* m) {
 		tmp->next = new Node(m);
 	}
 }
+
+int LinkedList::contains(AMateria* obj) {
+	Node* tmp = head;
+	while (tmp) {
+		if (tmp->object == obj)
+			return 1;
+		tmp = tmp->next;
+	}
+	return 0;
+}
+
+void LinkedList::setNodeToNull(AMateria* obj) {
+	Node* tmp = head;
+	while (tmp) {
+		if (tmp->object == obj) {
+			tmp->object = NULL;
+			return;
+		}
+		tmp = tmp->next;
+	}
+}

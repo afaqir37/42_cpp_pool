@@ -15,6 +15,8 @@ public:
 	~LinkedList();
 
 	void add(AMateria* m);
+	int contains(AMateria* obj);
+	void setNodeToNull(AMateria* obj);
 
 };
 
