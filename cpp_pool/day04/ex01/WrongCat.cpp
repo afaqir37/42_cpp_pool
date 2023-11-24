@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/24 01:21:06 by afaqir            #+#    #+#             */
+/*   Updated: 2023/11/24 01:21:11 by afaqir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "WrongCat.hpp"
 
 WrongCat::WrongCat() {
@@ -28,4 +40,3 @@ WrongCat::~WrongCat() {
 void WrongCat::makeSound(void) const{
     std::cout << "Wrong Meow!\n";
 }
-// what is the role of const after the prototype?

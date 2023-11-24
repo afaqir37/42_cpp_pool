@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/24 01:32:04 by afaqir            #+#    #+#             */
+/*   Updated: 2023/11/24 01:32:16 by afaqir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Dog.hpp"
 
 Dog::Dog() {
@@ -31,4 +43,12 @@ Dog::~Dog() {
 
 void Dog::makeSound(void) const{
     std::cout << "Dog sound: wouaff\n";
+}
+
+void Dog::getter(void) {
+    brain->getIdeas();
+}
+
+void Dog::setter(int index, std::string str) {
+    brain->setIdeas(index, str);
 }

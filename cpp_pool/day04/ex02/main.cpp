@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/24 01:32:42 by afaqir            #+#    #+#             */
+/*   Updated: 2023/11/24 01:35:05 by afaqir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 #include <stdlib.h>
 int main()
 {
-  Animal obj; // should throw compiler error
+  //Animal obj; // should throw compiler error
   Cat anotherObj; // should work fine
 
   // const Animal* j = new Dog();

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/24 01:32:19 by afaqir            #+#    #+#             */
+/*   Updated: 2023/11/24 01:32:34 by afaqir           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef _DOG_HPP_
 #define _DOG_HPP_
 #include "Animal.hpp"
@@ -13,6 +25,8 @@ class Dog : public Animal {
         ~Dog();
 
         void makeSound(void) const;
+        void getter(void);
+        void setter(int index, std::string str);
 };
 
 #endif

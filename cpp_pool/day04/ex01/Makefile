@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = Animal.cpp Cat.cpp Dog.cpp main.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = main
