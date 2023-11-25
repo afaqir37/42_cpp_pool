@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 01:36:01 by afaqir            #+#    #+#             */
-/*   Updated: 2023/11/24 01:36:02 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:55:38 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ public:
     Ice();
     Ice(const Ice& other);
     Ice& operator=(const Ice& other);
-    ~Ice();
+    virtual ~Ice();
 
     AMateria* clone() const;
     void use(ICharacter& target);

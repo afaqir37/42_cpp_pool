@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 01:35:47 by afaqir            #+#    #+#             */
-/*   Updated: 2023/11/24 01:35:48 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:55:08 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
     Character(std::string name);
     Character(Character& other);
     Character& operator=(const Character& other);
-    ~Character();
+    virtual ~Character();
 
     std::string const & getName() const;
     void equip(AMateria* m);

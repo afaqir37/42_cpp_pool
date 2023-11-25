@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 01:20:42 by afaqir            #+#    #+#             */
-/*   Updated: 2023/11/24 01:26:20 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:37:00 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Dog : public Animal {
         Dog();
         Dog(Dog& other);
         Dog& operator=(const Dog& other);
-        ~Dog();
+        virtual ~Dog();
 
         void makeSound(void) const;
         void getter(void);

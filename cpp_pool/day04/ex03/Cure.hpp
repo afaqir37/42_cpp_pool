@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 01:35:52 by afaqir            #+#    #+#             */
-/*   Updated: 2023/11/24 01:35:53 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:55:33 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ public:
     Cure();
     Cure(const Cure& other);
     Cure& operator=(const Cure& other);
-    ~Cure();
+    virtual ~Cure();
 
     AMateria* clone() const;
     void use(ICharacter& target);

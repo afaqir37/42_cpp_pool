@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 01:17:32 by afaqir            #+#    #+#             */
-/*   Updated: 2023/11/24 01:17:33 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:48:19 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ int main()
 
   const WrongAnimal* first = new WrongAnimal();
   const WrongAnimal* second = new WrongCat();
+  const WrongCat* third = new WrongCat();
   first->makeSound();
   second->makeSound();
+  third->makeSound();
 
   std::cout << "---------------------\n";
 
@@ -39,6 +41,7 @@ int main()
 
   delete first;
   delete second;
+  delete third;
   return 0;
 
 }

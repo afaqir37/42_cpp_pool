@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 01:33:11 by afaqir            #+#    #+#             */
-/*   Updated: 2023/11/24 01:33:12 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:51:57 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class WrongCat : public WrongAnimal {
         WrongCat();
         WrongCat(WrongCat& other);
         WrongCat& operator=(const WrongCat& other);
-        ~WrongCat();
+        virtual ~WrongCat();
 
         void makeSound(void) const;
 };

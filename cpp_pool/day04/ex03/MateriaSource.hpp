@@ -6,7 +6,7 @@
 /*   By: afaqir <afaqir@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 01:37:05 by afaqir            #+#    #+#             */
-/*   Updated: 2023/11/24 01:37:06 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/11/25 02:56:11 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ public:
 	MateriaSource();
 	MateriaSource(MateriaSource& other);
 	MateriaSource& operator=(const MateriaSource& other);
-	~MateriaSource();
+	virtual ~MateriaSource();
 
 	void learnMateria(AMateria* m);
 	AMateria* createMateria(std::string const & type);
