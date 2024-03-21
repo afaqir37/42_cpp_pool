@@ -1713,3 +1713,225 @@ public:
 };
 ```
 Any class inheriting from IErrorLog must provide implementations for all three functions in order to be instantiated. You could derive a class named FileErrorLog, where openLog() opens a file on disk, closeLog() closes the file, and writeError() writes the message to the file. You could derive another class called ScreenErrorLog, where openLog() and closeLog() do nothing, and writeError() prints the message in a pop-up message box on the screen.
+
+---
+
+## Exception in C++
+
+In C++, exceptions are used to handle abnormal, unpredictable, and erroneous situations that occur in a program. They provide a way to transfer control from one part of a program to another. C++ exception handling is built upon three keywords: `try`, `catch`, and `throw`.
+
+- `try`: A try block identifies a block of the code for which particular exceptions will be activated. It's followed by one or more catch blocks.
+- `catch`: A program catches an exception with an exception handler at the place you want to handle the problem. The catch keyword indicates the catching of an exception.
+- `throw`: A program throws an exception when a problem shows up. This is done using a throw keyword.
+
+For example, consider the following piece of code:
+
+```cpp
+try {
+    // Code that could throw an exception
+    throw runtime_error("This is an error message");
+}
+catch (runtime_error &e) {
+    // Handle the exception
+    cout << e.what();
+}
+```
+
+Sure, here's a summary you can add to your README under the section "Exception in C++":
+
+```markdown
+## Exception in C++
+
+In C++, exceptions are used to handle abnormal, unpredictable, and erroneous situations that occur in a program. They provide a way to transfer control from one part of a program to another. C++ exception handling is built upon three keywords: `try`, `catch`, and `throw`.
+
+- `try`: A try block identifies a block of the code for which particular exceptions will be activated. It's followed by one or more catch blocks.
+- `catch`: A program catches an exception with an exception handler at the place you want to handle the problem. The catch keyword indicates the catching of an exception.
+- `throw`: A program throws an exception when a problem shows up. This is done using a throw keyword.
+
+For example, consider the following piece of code:
+
+```cpp
+try {
+    // Code that could throw an exception
+    throw runtime_error("This is an error message");
+}
+catch (runtime_error &e) {
+    // Handle the exception
+    cout << e.what();
+}
+```
+
+In this code, the `try` block contains the code that might throw an exception. The `throw` keyword is used to throw an exception when a problem occurs. The `catch` block then catches the exception and handles it (in this case, by printing the error message).
+
+In the provided code snippet, two exception classes are defined: `GradeTooHighException` and `GradeTooLowException`. Both of these classes inherit from the `std::exception` class, which is a part of the C++ Standard Library.
+
+```cpp
+class GradeTooHighException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+};
+
+class GradeTooLowException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+};
+```
+
+The `what()` function is a public method provided by the `std::exception` class. It has been overridden in both `GradeTooHighException` and `GradeTooLowException` classes. This function returns a null terminated character sequence (a C-string) that can be used to describe the exception. The `throw()` specifier indicates that this function does not throw any exceptions.
+
+When a condition occurs that leads to an exception of type `GradeTooHighException` or `GradeTooLowException`, these exceptions can be thrown using the `throw` keyword and caught in a `catch` block for appropriate handling.
+
+The provided code snippet is a simple demonstration of exception handling in C++. Here's a breakdown of how it works:
+
+```cpp
+int main(void) {
+    try {
+        //throw std::exception();
+        throw 42;
+    } catch (std::exception & e) {
+        std::cout << "Caught an exception" << std::endl;
+    } catch (...) {
+        std::cout << "Caught an unknown exception" << std::endl;
+    }
+}
+```
+
+## `try` Block
+
+The `try` block contains code that might potentially throw an exception. In this case, the code is throwing an integer `42`.
+
+```cpp
+try {
+    //throw std::exception();
+    throw 42;
+}
+```
+
+## `catch` Blocks
+
+The `catch` blocks are used to handle exceptions. They follow the `try` block and contain code that is executed if an exception is thrown in the `try` block.
+
+The first `catch` block is designed to handle exceptions of type `std::exception`. However, since the `try` block is throwing an integer, this `catch` block will not be executed.
+
+```cpp
+catch (std::exception & e) {
+    std::cout << "Caught an exception" << std::endl;
+}
+```
+
+The second `catch` block is a catch-all handler that can handle exceptions of any type. Since the `try` block is throwing an integer, this `catch` block will be executed, and "Caught an unknown exception" will be printed to the console.
+
+```cpp
+catch (...) {
+    std::cout << "Caught an unknown exception" << std::endl;
+}
+```
+
+In summary, this code demonstrates how to throw and catch exceptions in C++. The type of the exception thrown in the `try` block determines which `catch` block is executed.
+
+## Exception Handling Outside `try` Block
+
+If an exception is thrown outside of a `try` block and there is no corresponding `catch` block to handle it, the program will terminate. This is because unhandled exceptions are treated as errors in C++. 
+
+In a real-world application, it's important to ensure that all exceptions are properly handled to prevent unexpected program termination. This is typically done by wrapping any code that might throw an exception in a `try` block and providing corresponding `catch` blocks to handle any exceptions that might be thrown.
+
+## "Throw by Value, Catch by Reference" principle
+
+When you throw an exception, you're creating a new instance of an exception object. This is why we say "throw by value". The exception object is typically created as a temporary object, and it's the value of this object that gets thrown.
+
+Here's an example:
+
+```cpp
+throw std::runtime_error("An error occurred");
+```
+
+In this case, a `std::runtime_error` object is being created and thrown. The object is created as a temporary, and it's the value of this object that gets thrown.
+
+When you catch an exception, you want to catch it by reference. This is to ensure that you're catching the actual exception object that was thrown, not a copy of it. If you were to catch by value, you'd be working with a copy of the exception object, not the original. This could lead to slicing, where you lose any data that was in derived classes.
+
+Here's an example:
+
+```cpp
+try {
+    // Code that might throw an exception
+} catch (const std::runtime_error& e) {
+    // Handle the exception
+}
+```
+
+In this case, the exception is being caught by reference, ensuring that you're working with the actual exception object that was thrown.
+
+So, in summary, "throw by value, catch by reference" is a best practice in C++ to ensure that you're working with the actual exception object that was thrown, not a copy of it.
+
+## Understanding Slicing in Exception Handling
+
+"Slicing" is a term used in C++ to describe a situation where an object of a derived class is assigned to an instance of a base class. When this happens, the additional attributes and behaviors of the derived class are "sliced off" and you're left with just the base class part of the object.
+
+In the context of exceptions, if you were to catch an exception by value, and the exception thrown was of a derived exception type, you would lose the additional information provided by the derived exception. This is known as slicing.
+
+Here's an example:
+
+```cpp
+class BaseException : public std::exception {
+    public:
+        virtual const char *what() const throw() {
+            return "Base exception";
+        }
+};
+
+class DerivedException : public BaseException {
+    public:
+        virtual const char *what() const throw() {
+            return "Child exception";
+        }
+};
+
+void functionThatThrows() {
+    throw DerivedException();
+}
+
+int main() {
+    try {
+        functionThatThrows();
+    }
+    catch (BaseException &e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+```
+
+
+In this example, `DerivedException` is a subclass of `BaseException` and overrides the `what()` method. The `functionThatThrows()` function throws a `DerivedException`.
+
+In the `main()` function, we're catching the exception as a `BaseException` by value. This is where slicing occurs. Because we're catching by value, not by reference, we're creating a new `BaseException` object that's a copy of the `DerivedException` object that was thrown. But because `BaseException` doesn't have the same attributes and behaviors as `DerivedException`, the `DerivedException` part gets sliced off.
+
+As a result, when we call `e.what()`, we get "Base exception" instead of "Derived exception". If we had caught the exception by reference (`catch (BaseException& e)`), we would have gotten "Derived exception", because we would have been working with the actual `DerivedException` object that was thrown, not a sliced copy of it.
+
+## Common Types Of Exceptions in C++
+
+C++ Standard Library provides a set of standard exceptions that derive from `std::exception`, the base class for all standard C++ exceptions. Here are some of the most common ones:
+
+1. `std::logic_error`: This represents errors in the internal logic of the program. In theory, these are preventable.
+
+    - `std::invalid_argument`: Thrown when an invalid argument is passed.
+    - `std::domain_error`: Thrown when a mathematically invalid domain is used.
+    - `std::length_error`: Thrown when an object is created that exceeds its maximum allowable size.
+    - `std::out_of_range`: Thrown when an argument value is not within the expected range.
+
+2. `std::runtime_error`: This represents errors that are detected during runtime.
+
+    - `std::overflow_error`: Thrown when a mathematical overflow occurs.
+    - `std::underflow_error`: Thrown when a mathematical underflow occurs.
+    - `std::range_error`: Thrown when a mathematical range error occurs.
+
+3. `std::bad_alloc`: This is thrown by new when it fails to allocate memory.
+
+4. `std::bad_cast`: This is thrown by dynamic_cast when it fails to perform a dynamic cast.
+
+5. `std::bad_typeid`: This is thrown by typeid.
+
+6. `std::bad_exception`: This is useful device to handle unexpected exceptions in a C++ program.
+
+7. `std::bad_function_call`: Thrown by `std::function` when a call is made to an empty `std::function`.
+
+These are just a few examples. There are many more exceptions in the C++ Standard Library, and you can also define your own custom exceptions by inheriting from `std::exception` or any other standard exception.
