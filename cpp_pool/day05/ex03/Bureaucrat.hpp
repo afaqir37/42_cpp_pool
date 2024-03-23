@@ -2,8 +2,7 @@
 #define _BUREAUCRAT_HPP_
 
 #include <iostream>
-#include "Form.hpp"
-
+#include "AForm.hpp"
 class AForm;
 
 class Bureaucrat {
@@ -31,7 +30,8 @@ public:
             virtual const char* what() const throw();
     };
 
-    void signForm(Form &form);
+    void signForm(AForm &form);
+    void executeForm(AForm const &form);
 
 };
 
