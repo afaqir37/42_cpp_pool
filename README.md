@@ -1737,30 +1737,6 @@ catch (runtime_error &e) {
 }
 ```
 
-Sure, here's a summary you can add to your README under the section "Exception in C++":
-
-```markdown
-## Exception in C++
-
-In C++, exceptions are used to handle abnormal, unpredictable, and erroneous situations that occur in a program. They provide a way to transfer control from one part of a program to another. C++ exception handling is built upon three keywords: `try`, `catch`, and `throw`.
-
-- `try`: A try block identifies a block of the code for which particular exceptions will be activated. It's followed by one or more catch blocks.
-- `catch`: A program catches an exception with an exception handler at the place you want to handle the problem. The catch keyword indicates the catching of an exception.
-- `throw`: A program throws an exception when a problem shows up. This is done using a throw keyword.
-
-For example, consider the following piece of code:
-
-```cpp
-try {
-    // Code that could throw an exception
-    throw runtime_error("This is an error message");
-}
-catch (runtime_error &e) {
-    // Handle the exception
-    cout << e.what();
-}
-```
-
 In this code, the `try` block contains the code that might throw an exception. The `throw` keyword is used to throw an exception when a problem occurs. The `catch` block then catches the exception and handles it (in this case, by printing the error message).
 
 In the provided code snippet, two exception classes are defined: `GradeTooHighException` and `GradeTooLowException`. Both of these classes inherit from the `std::exception` class, which is a part of the C++ Standard Library.
@@ -1935,3 +1911,51 @@ C++ Standard Library provides a set of standard exceptions that derive from `std
 7. `std::bad_function_call`: Thrown by `std::function` when a call is made to an empty `std::function`.
 
 These are just a few examples. There are many more exceptions in the C++ Standard Library, and you can also define your own custom exceptions by inheriting from `std::exception` or any other standard exception.
+
+
+# C++ Casts
+
+Casting in C++ is a way to convert a variable from one type to another. There are four types of casts in C++:
+
+## 1. static_cast
+
+`static_cast` is the most commonly used cast. It can be used for things like converting one primitive type to another, converting enums to integers, and converting pointers up and down an inheritance hierarchy.
+
+Example:
+```cpp
+int i = 42;
+double d = static_cast<double>(i); // Converts the integer i to a double
+```
+
+## 2. dynamic_cast
+
+`dynamic_cast` is primarily used for handling polymorphism. You can use it to safely convert from a pointer (or reference) to a base type to a pointer (or reference) to a derived type.
+
+Example:
+```cpp
+Base* basePtr = new Derived();
+Derived* derivedPtr = dynamic_cast<Derived*>(basePtr); // Safe downcast
+```
+
+## 3. const_cast
+
+`const_cast` is used to add or remove the `const` qualifier from a variable.
+
+Example:
+```cpp
+const int i = 42;
+int* j = const_cast<int*>(&i); // Removes const-ness
+```
+
+## 4. reinterpret_cast
+
+`reinterpret_cast` is the most dangerous cast, and should be used sparingly. It basically tells the compiler to treat the expression as if it were a totally different type.
+
+Example:
+```cpp
+int i = 42;
+int* p = &i;
+char* ch = reinterpret_cast<char*>(p); // Treats the int pointer as a char pointer
+```
+
+Each of these casts has its own use cases and caveats. Always use the right cast for the situation, and avoid casting where possible, as it can often lead to hard-to-find bugs.
