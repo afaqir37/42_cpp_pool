@@ -2,6 +2,7 @@
 
 int main(void)
 {
-    std::cout << "Hello World!\n";
-    return (0);
+    int *a = new int[0];
+    *a = 1;
+    std::cout << *a << std::endl;
 }
