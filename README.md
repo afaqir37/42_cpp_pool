@@ -2036,3 +2036,68 @@ int main() {
 ```
 
 This is why it's a common practice to place template definitions in header files. It ensures that the entire template definition is visible to the compiler wherever the template is instantiated.
+
+# C++ Iterators
+
+Iterators in C++ are used to point at the memory addresses of STL containers. They are primarily used in sequence of numbers, characters etc. They reduce the complexity and execution time of the program.
+
+## Types of Iterators
+
+There are five types of iterators in C++:
+
+1. **Input Iterators**: They are the simplest kind of iterator and can be used to read and process elements of an STL container like an array or a list from one end to the other in a single pass.
+
+2. **Output Iterators**: They are used to write or modify elements of an STL container. Like input iterators, they also process elements in a single pass from one end to the other.
+
+3. **Forward Iterators**: They combine the features of input and output iterators. They can be used to both read and modify elements of an STL container. Unlike input and output iterators, they can make multiple passes over the elements of a container.
+
+4. **Bidirectional Iterators**: They extend the functionality of forward iterators. In addition to moving forward, they can also move backwards through the elements of a container.
+
+5. **Random Access Iterators**: They are the most powerful type of iterator. In addition to moving forwards and backwards, they can also jump directly to any element in the container.
+
+## Usage
+
+Here is an example of how to use iterators:
+
+```cpp
+std::vector<int> vec = {1, 2, 3, 4, 5};
+for(std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it) {
+    std::cout << *it << " ";
+}
+```
+
+In this example, `vec.begin()` returns an iterator pointing to the first element of `vec` and `vec.end()` returns an iterator pointing one past the end of `vec`. The loop uses these iterators to print out each element of `vec`.
+
+## Exception Handling with Iterators
+
+Iterators can be used in conjunction with exception handling to safely access elements in a container. Here is an example:
+
+```cpp
+template<typename T>
+typename T::iterator easyfind(T &container, int i) {
+    typename T::iterator it = std::find(container.begin(), container.end(), i);
+    if (it == container.end())
+        throw (std::exception());
+    return it;
+}
+```
+
+In this example, `std::find` returns an iterator pointing to the first occurrence of `i` in `container`. If `i` is not found, `std::find` returns `container.end()`, and the function throws an exception.
+
+# C++ Containers and Container Adapters
+
+## Containers
+
+In C++, a container is a class template that holds and manages a collection of elements. Examples of containers include `std::vector`, `std::list`, `std::deque`, etc. These containers own and manage the memory used to store their elements. When a container is destroyed, its destructor is responsible for releasing this memory.
+
+However, it's generally not recommended to inherit from these classes because they don't have virtual destructors. A virtual destructor is needed in a base class if you're going to inherit from it and delete derived class objects through a pointer to the base class. If the base class's destructor is not virtual, then the derived class's destructor won't be called, which can lead to resource leaks.
+
+## Container Adapters
+
+A container adapter is a class that provides a specific interface on top of an underlying container. Examples of container adapters include `std::stack`, `std::queue`, and `std::priority_queue`. These adapters do not own or manage any memory themselves. Instead, they rely on an underlying container to store their elements.
+
+`std::stack` is a container adapter that provides a LIFO (Last-In-First-Out) interface on top of an underlying container. By default, this underlying container is a `std::deque`, but it can be any container that supports the necessary operations (like `push_back`, `pop_back`, and `back`).
+
+When we say "`std::stack` doesn't manage any resources itself", we mean that it doesn't directly allocate or deallocate any memory. All memory management is handled by the underlying container. This is why `std::stack` doesn't need a virtual destructor: it doesn't have any resources to release when it's destroyed.
+
+This makes `std::stack` safer to inherit from than a container like `std::vector`. If you inherit from `std::vector` and delete a derived object through a pointer to `std::vector`, the `std::vector` destructor will be called, but the derived class's destructor won't be. This can lead to resource leaks if the derived class manages any resources. But since `std::stack` doesn't manage any resources, this issue doesn't arise.

@@ -28,3 +28,5 @@ iter(arr, 5, printElem<int>);
 ```
 
 In this case, `printElem<int>` tells the compiler to use the version of `printElem` that takes an `int` as the `func` parameter to `iter`.
+
+
