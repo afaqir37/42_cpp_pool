@@ -15,6 +15,7 @@ class BitcoinExchange {
         ~BitcoinExchange();
 
 
+        bool isLeapYear(int year);
         void processLine(std::string& line, int line_number);
         void parse();
         std::string trim(const std::string &str);

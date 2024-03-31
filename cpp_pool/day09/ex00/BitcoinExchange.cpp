@@ -21,6 +21,18 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
+bool BitcoinExchange::isLeapYear(int year)
+{
+    if (year % 4 != 0)
+        return false;
+    else if (year % 100 != 0)
+        return true;
+    else if (year % 400 != 0)
+        return false;
+    else
+        return true;
+}
+
 std::string BitcoinExchange::trim(const std::string &str)
 {
     size_t first = str.find_first_not_of(' ');
@@ -32,6 +44,7 @@ std::string BitcoinExchange::trim(const std::string &str)
 
 void BitcoinExchange::processLine(std::string &line, int line_number)
 {
+    int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     size_t pos = line.find(" | ");
     if (pos != std::string::npos)
     {
@@ -53,14 +66,21 @@ void BitcoinExchange::processLine(std::string &line, int line_number)
 
             if (year > 0 && month > 0 && day > 0 && month <= 12 && day <= 31)
             {
-                std::istringstream ss(value_str);
-                float value;
-                if (!(ss >> value))
-                    std::cout << "Error: Invalid value on line: " << line_number << " : " << value_str << std::endl;
-                else if (value < 0 || value > 1000)
-                    std::cout << "Error: value out of range on line: " << line_number << " : " << value_str << std::endl;
-                else
-                    _data[date_str] = value;
+                if ((month == 2 && isLeapYear(year) && day <= 29) || (day <= daysInMonth[month - 1]))
+                {
+                        std::istringstream ss(value_str);
+                        float value;
+                        if (!(ss >> value))
+                            std::cout << "Error: Invalid value on line: " << line_number << " : " << value_str << std::endl;
+                        else if (value < 0 || value > 1000)
+                            std::cout << "Error: value out of range on line: " << line_number << " : " << value_str << std::endl;
+                        else
+                            _data[date_str] = value;
+                    
+                }
+                else {
+                    std:: cout << "Error: bad input on line: " << line_number << " => " << date_str << std::endl;
+                }
             }
             else
             {
