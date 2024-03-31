@@ -1,8 +1,9 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(std::string filename) : _filename(filename)
+BitcoinExchange::BitcoinExchange(std::string filename, std::string dataBasePath) : _filename(filename)
 {
     parse();
+    parseDataBase(dataBasePath);
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
@@ -137,8 +138,36 @@ void BitcoinExchange::parse()
     file.close();
 }
 
+void BitcoinExchange::parseDataBase(std::string& filename) {
+    std::ifstream input(filename.c_str());
+
+    if (!input.is_open()) {
+        std::cout << "Error: cannot open the file" << std::endl;
+        return ;
+    }
+
+    std::string line;
+    std::string name;
+    float exchange_rate;
+    std::getline(input, line);
+
+    while (std::getline(input, line)) {
+        std::istringstream ss(line);
+        if (std::getline(ss, name, ',') && ss >> exchange_rate)
+            dataBase[name] = exchange_rate;
+        else
+            std::cout << "Error" << std::endl;
+    }
+}
+
+
 void BitcoinExchange::print()
 {
     for (std::map<std::string, float>::iterator it = _data.begin(); it != _data.end(); ++it)
+        std::cout << "key: " << it->first << " value: " << it->second << '\n';
+}
+
+void BitcoinExchange::printDataBase() {
+    for (std::map<std::string, float>::iterator it = dataBase.begin(); it != dataBase.end(); ++it)
         std::cout << "key: " << it->first << " value: " << it->second << '\n';
 }

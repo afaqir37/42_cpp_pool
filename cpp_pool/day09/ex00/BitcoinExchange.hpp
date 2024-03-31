@@ -8,8 +8,8 @@
 #include <cstdlib>
 
 class BitcoinExchange {
-    public:
-        BitcoinExchange(std::string filename);
+public:
+        BitcoinExchange(std::string filename, std::string dataBasePath);
         BitcoinExchange(const BitcoinExchange &other);
         BitcoinExchange &operator=(const BitcoinExchange &other);
         ~BitcoinExchange();
@@ -17,12 +17,16 @@ class BitcoinExchange {
 
         bool isLeapYear(int year);
         void processLine(std::string& line, int line_number);
-        void parse();
         std::string trim(const std::string &str);
         void print();
-    private:
+        void printDataBase();
+      
+        void parse();
+        void parseDataBase(std::string& filename);
+private:
         std::string _filename;
         std::map<std::string, float> _data;
+        std::map<std::string, float> dataBase;
 };
 
 
