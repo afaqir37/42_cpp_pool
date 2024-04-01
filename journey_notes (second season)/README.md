@@ -101,4 +101,80 @@ file.close();
 This will allow the write operation to succeed even if you've read to the end of the file.
 ```
 
+# Understanding std::map::upper_bound and std::map::lower_bound
+
+`std::map` is a sorted associative container that contains key-value pairs with unique keys. Keys are sorted by using the comparison function `Compare`.
+
+## std::map::upper_bound
+
+The function `std::map::upper_bound` returns an iterator pointing to the first element that is considered to go after the key. In other words, it returns an iterator to the first element in the container whose key is considered to go after k.
+
+Example:
+
+```cpp
+std::map<int, std::string> m = {{1, "one"}, {2, "two"}, {3, "three"}};
+
+auto it = m.upper_bound(2);
+
+// it now points to the pair {3, "three"}
+
+Sure, here's a `README.md` file content that explains `std::map::upper_bound`, `std::map::lower_bound`, and the automatic sorting of keys in `std::map`.
+
+```markdown
+# Understanding std::map::upper_bound and std::map::lower_bound
+
+`std::map` is a sorted associative container that contains key-value pairs with unique keys. Keys are sorted by using the comparison function `Compare`.
+
+## std::map::upper_bound
+
+The function `std::map::upper_bound` returns an iterator pointing to the first element that is considered to go after the key. In other words, it returns an iterator to the first element in the container whose key is considered to go after k.
+
+Example:
+
+```cpp
+std::map<int, std::string> m = {{1, "one"}, {2, "two"}, {3, "three"}};
+
+auto it = m.upper_bound(2);
+
+// it now points to the pair {3, "three"}
+```
+
+## std::map::lower_bound
+
+The function `std::map::lower_bound` returns an iterator pointing to the first element that is not considered to go before the key. In other words, it returns an iterator to the first element in the container whose key is considered to not go before k.
+
+Example:
+
+```cpp
+std::map<int, std::string> m = {{1, "one"}, {2, "two"}, {3, "three"}};
+
+auto it = m.lower_bound(2);
+
+// it now points to the pair {2, "two"}
+```
+
+## Sorting in std::map
+
+`std::map` automatically sorts its keys in ascending order. This is a built-in feature of `std::map`.
+
+Example:
+
+```cpp
+std::map<int, std::string> m;
+
+m[3] = "three";
+m[1] = "one";
+m[2] = "two";
+
+for (const auto& pair : m) {
+    std::cout << "key: " << pair.first << " value: " << pair.second << std::endl;
+}
+
+// Output:
+// key: 1 value: one
+// key: 2 value: two
+// key: 3 value: three
+```
+
+In this example, even though the elements were inserted into the map in the order 3, 1, 2, they are printed in the order 1, 2, 3. This shows that `std::map` automatically sorts its keys in ascending order.
 

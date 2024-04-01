@@ -2,8 +2,8 @@
 
 BitcoinExchange::BitcoinExchange(std::string filename, std::string dataBasePath) : _filename(filename)
 {
-    parse();
     parseDataBase(dataBasePath);
+    parse();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
@@ -43,6 +43,14 @@ std::string BitcoinExchange::trim(const std::string &str)
     return str.substr(first, last - first + 1);
 }
 
+float BitcoinExchange::exchangeBtc(std::string& date) {
+    std::map<std::string, float>::iterator it = dataBase.upper_bound(date);
+    if (it == dataBase.begin())
+        throw std::exception();
+    --it;
+    return _data[date] * it->second;
+}
+
 void BitcoinExchange::processLine(std::string &line, int line_number)
 {
     int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -61,22 +69,44 @@ void BitcoinExchange::processLine(std::string &line, int line_number)
             std::string month_str = date_str.substr(dash1 + 1, dash2 - dash1 - 1);
             std::string day_str = date_str.substr(dash2 + 1);
 
-            int year = atoi(year_str.c_str());
-            int month = atoi(month_str.c_str());
-            int day = atoi(day_str.c_str());
+            char* endptr;
+            long int year = strtol(year_str.c_str(), &endptr, 10);
+            if (*endptr != '\0') {
+                std::cout << "Error: Invalid year on line: " << line_number << " : " << year_str << std::endl;
+                return ;
+            }
+
+            long int month = strtol(month_str.c_str(), &endptr, 10);
+            if (*endptr != '\0') {
+                std::cout << "Error: Invalid month on line: " << line_number << " : " << month_str << std::endl;
+                return ;
+            }
+
+            long int day = strtol(day_str.c_str(), &endptr, 10);
+            if (*endptr != '\0') {
+                std::cout << "Error: Invalid day on line: " << line_number << " : " << day_str << std::endl;
+                return ;
+            }
 
             if (year > 0 && month > 0 && day > 0 && month <= 12 && day <= 31)
             {
                 if ((month == 2 && isLeapYear(year) && day <= 29) || (day <= daysInMonth[month - 1]))
                 {
-                        std::istringstream ss(value_str);
-                        float value;
-                        if (!(ss >> value))
+                        char *endptr;
+                        float value = strtof(value_str.c_str(), &endptr);
+                        if (*endptr != '\0')
                             std::cout << "Error: Invalid value on line: " << line_number << " : " << value_str << std::endl;
                         else if (value < 0 || value > 1000)
                             std::cout << "Error: value out of range on line: " << line_number << " : " << value_str << std::endl;
-                        else
+                        else {
                             _data[date_str] = value;
+                            try {
+                                float result = exchangeBtc(date_str);
+                                std::cout << date_str << " => " << _data[date_str] << " = " << result << std::endl;
+                            } catch (std::exception& e) {
+                                std::cout << "Error: The date on line: " << line_number << " is less than all existing dates in the database" << std::endl;
+                            }
+                        }
                     
                 }
                 else {
@@ -156,7 +186,7 @@ void BitcoinExchange::parseDataBase(std::string& filename) {
         if (std::getline(ss, name, ',') && ss >> exchange_rate)
             dataBase[name] = exchange_rate;
         else
-            std::cout << "Error" << std::endl;
+            std::cout << "Error parsing line: " << line << std::endl;
     }
 }
 

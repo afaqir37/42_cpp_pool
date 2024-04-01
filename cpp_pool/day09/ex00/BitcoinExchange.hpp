@@ -20,7 +20,7 @@ public:
         std::string trim(const std::string &str);
         void print();
         void printDataBase();
-      
+        float exchangeBtc(std::string& date);
         void parse();
         void parseDataBase(std::string& filename);
 private:

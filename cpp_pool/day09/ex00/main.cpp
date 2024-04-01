@@ -6,9 +6,9 @@ int main(int argc, char** argv) {
         return 1;
     }
     BitcoinExchange exchange(argv[1], "data.csv");
-    exchange.print();
+  // exchange.printDataBase();
+   // exchange.print();
     std::cout << "-------------------\n";
-    exchange.printDataBase();
     return 0;
 
 }

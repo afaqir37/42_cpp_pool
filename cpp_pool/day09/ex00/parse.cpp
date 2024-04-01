@@ -2,32 +2,30 @@
 
 #include <fstream>
 #include <map>
+#include <iostream>
 #include <sstream>
 
 int main() {
-    std::fstream file("data.csv");
-
-    std::string name;
     std::map<std::string, float> data;
 
-    float exchange_rate;
-    std::istringstream ss("2033.3.1");
-    if (getline(ss, name, ',') && ss >> exchange_rate)
-        data[name] = exchange_rate;
-    else
-        std::cout << "tnakt\n";
+    data["2024-02-03"] = 30;
+    data["2024-01-10"] = 10;
+    data["2024-04-11"] = 40;
+    data["2024-01-20"] = 20;
 
-    for (auto it: data)
-        std::cout << "key: " << it.first << " value: " << it.second << '\n';
-    // while (getline(file, name)) {
-    //     std::istringstream ss(name);
-    //     float exchange_rate;
-    //     std::string date;
+    std::map<std::string, float>::iterator it = data.upper_bound("2024-04-12");
+    if (it == data.begin()) {
+       std::cout << "element not found\n";
+    } else {
+        --it;
+    std::cout << "key: " << it->first << " value: " << it->second << std::endl;
+    }
+    std::cout << "------\n";
 
-    //     if (std::getline(ss, date, ',') && ss >> exchange_rate)
-    //         data[date] = exchange_rate;
-    // }
+    for (std::map<std::string, float>::iterator it = data.begin(); it != data.end(); it++) {
+        std::cout << "key: " << it->first << " value: " << it->second << std::endl;
+    }
 
-    
-    file.close();
+   // else
+      //  std::cout << "Element not found\n";
 }
