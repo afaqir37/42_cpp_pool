@@ -5,6 +5,7 @@
 #include <sstream>
 #include <stack>
 #include <string.h>
+#include <cstdlib>
 
 class CalculatorRPN {
 private:
@@ -17,6 +18,7 @@ public:
     ~CalculatorRPN();
 
     void parseAndCalculate();
+    bool isValid(std::string& token);
 };
 
 #endif
