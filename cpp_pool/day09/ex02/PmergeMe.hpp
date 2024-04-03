@@ -7,6 +7,9 @@
 #include <set>
 #include <sstream>
 #include <cstdlib>
+#include <algorithm>
+#include <ctime>
+#include <iomanip>
 
 class CustomSort {
 public:
@@ -16,6 +19,10 @@ public:
     ~CustomSort();
 
     void parse();
+    void sortVec();
+    void makePairs(std::vector<std::pair<int, int> >& pairs);
+    void mergeSort(std::vector<std::pair<int, int> >& pairs, int start, int end);
+    void merge(std::vector<std::pair<int, int> >& pairs, int start, int mid, int end);
     void print();
 
 private:
