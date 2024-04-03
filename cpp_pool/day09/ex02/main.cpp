@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
             CustomSort obj(list);
             obj.print();
             obj.sortVec();
+            obj.sortDeque();
         } catch (std::exception& e) {
             std::cout << e.what() << std::endl;
         }

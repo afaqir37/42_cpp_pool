@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include <list>
+#include <deque>
 #include <set>
 #include <sstream>
 #include <cstdlib>
@@ -23,12 +23,18 @@ public:
     void makePairs(std::vector<std::pair<int, int> >& pairs);
     void mergeSort(std::vector<std::pair<int, int> >& pairs, int start, int end);
     void merge(std::vector<std::pair<int, int> >& pairs, int start, int mid, int end);
+
+    void sortDeque();
+    void makePairs(std::deque<std::pair<int, int> >& pairs);
+    void mergeSort(std::deque<std::pair<int, int> >& pairs, int start, int end);
+    void merge(std::deque<std::pair<int, int> >& pairs, int start, int mid, int end);
+    
     void print();
 
 private:
     std::string _expression;
     std::vector<int> vec;
-    std::list<int> list;
+    std::deque<int> deque;
 };
 
 #endif
